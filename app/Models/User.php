@@ -6,10 +6,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use Notifiable, HasRoles;
+
 
     /**
      * The attributes that are mass assignable.
@@ -43,5 +46,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function association()
+    {
+        return $this->hasOne(Association::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }
