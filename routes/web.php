@@ -9,3 +9,10 @@ use App\Http\Controllers\AssociationController;
 
 // Route::resource('associations', AssociationController::class)->middleware('role:association');
 
+Route::get('/register', function(){
+    return view('auths.users.register');
+});
+
+Route::get('/login', function(){
+    return view('auths.users.login');
+});
