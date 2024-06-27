@@ -12,7 +12,8 @@ class EvennementController extends Controller
      */
     public function index()
     {
-        //
+        $evennements=Evennement::all();
+        return view('evennements.index',compact('evennements'));
     }
 
     /**
@@ -20,7 +21,7 @@ class EvennementController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -28,7 +29,8 @@ class EvennementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Evennement::create($request->all());
+        return redirect('evenements');
     }
 
     /**
@@ -44,7 +46,9 @@ class EvennementController extends Controller
      */
     public function edit(Evennement $evennement)
     {
-        //
+        $evennements=Evennement::all();
+        return view('evennements.edit', compact('evennement','evennements'));
+
     }
 
     /**
@@ -52,7 +56,20 @@ class EvennementController extends Controller
      */
     public function update(Request $request, Evennement $evennement)
     {
-        //
+        
+        $validatedData = $request->validate([
+            'nom' => 'required|max:255',
+            'date' => 'required|date',
+            'lieu' => 'required',
+            'duree' => 'required',
+            'nombre_de_place' => 'required|integer',
+            'date_limite' => 'required|date',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+    $evennement->update($validatedData);
+
+    return redirect('evennements')->with('success', 'Événement mis à jour avec succès.');
     }
 
     /**
@@ -60,6 +77,7 @@ class EvennementController extends Controller
      */
     public function destroy(Evennement $evennement)
     {
-        //
+        $evennement->delete();
+        return redirect('evennements')->with('success', 'Evénnement supprimée avec succès.');
     }
 }
