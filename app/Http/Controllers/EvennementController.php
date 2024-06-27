@@ -30,7 +30,7 @@ class EvennementController extends Controller
     public function store(Request $request)
     {
         Evennement::create($request->all());
-        return redirect('evenements');
+        return redirect('evennements');
     }
 
     /**
