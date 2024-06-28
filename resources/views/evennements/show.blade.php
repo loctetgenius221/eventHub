@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>EventHub</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -176,6 +177,33 @@ header{
     padding: 10px;
     transition: border-color 0.3s ease;
 }
+.card-img-events-detail{
+    width: 100%;
+    height: 288px;
+}
+.form-container-detail{
+    background-color: white;
+    padding: 0px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px;
+    max-width: 100%;
+}
+.body-card-detail{
+    padding: 30px;
+}
+.body-card-detail h2{
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.container-programme{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-around;
+    font-size: 14px;
+}
+
 
 /* les crans mobile */
 @media (max-width: 768px) {
@@ -236,67 +264,38 @@ header{
             <div class="welcome-message">SIMPLON</div>
             <div class="profile-icon"></div>
         </header>
-            <div class="form-container">
-                <h2>Ajouter un nouvel évènement</h2>
+            <div class="form-container-detail">
                 <div class="container mt-5" >
-                    <form class="row g-3" action="{{route('evennements.store')}}" method="post">
-                            @csrf
-                            <div class="col-md-4">
-                                <label for="inputEmail4" class="form-label">Nom</label>
-                                <input type="text" class="form-control" id="inputEmail4" name="nom">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputPassword4" class="form-label">Date</label>
-                                <input type="date" class="form-control" id="inputPassword4" name="date">
-                            </div>
-                            <div class="col-4">
-                                <label for="inputAddress" class="form-label">Lieu</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="lieu">
-                            </div>
-                            <div class="col-4">
-                                <label for="inputAddress2" class="form-label">Durée</label>
-                                <input type="time" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="duree">
-                            </div>
-                            <div class="col-md-4">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Nombre de place</label>
-                                    <input type="number" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="nombre_de_place">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="exampleFormControlTextarea1" class="form-label">Date limite</label>
-                                <input type="date" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="date_limite">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
-                            </div>   
-                            <div class="responsive-flex">
-                            <div class="col-md-2">
-                                <label for="exampleFormControlTextarea1" class="form-label">Image</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="image">
-                            </div>
-                        
-                            <div class="col-md-2">
-                                <button type="submit" class="button">Ajouter</button>
-                            </div>
+                <img src="https://img.freepik.com/psd-gratuit/publication-reseaux-sociaux-du-flyer-du-club-dj-party_505751-4119.jpg?uid=R147170837&ga=GA1.1.2034080354.1716549514&semt=sph" class="card-img-events-detail" alt="...">
+                <div class="body-card-detail">
+                <h2>Dakar - Gestion du temps et productivité</h2>
+                <p>Ce séminaire vous offre des outils pratiques et des stratégies éprouvées pour optimiser votre emploi du temps, réduire le stress lié à la surcharge de travail, et améliorer votre productivité de manière significative.</p>
+                <div class="container-programme">
+                        <div>
+                            <p>Date : 15 Juillet</p>
+                            <p>Date : 15 Juillet</p>
                         </div>
-                    </form>
+                        <div>
+                            <p>Date : 15 Juillet</p>
+                            <p>Date : 15 Juillet</p>
+                        </div>
+                        <div>
+                            <p>Date : 15 Juillet</p>
+                            <p>Date : 15 Juillet</p>
+                        </div>
+                </div>
+                        <div class="action">
+                            <a href=""><i class="fa-solid fa-trash" style="color: #e01b24;"></i></a>
+                            <a href=""><i class="fa-solid fa-pen" style="color: #74C0FC;"></i></a>
+                        </div>
+            </div>
         </div>
     </div>
     <div class="card-container">
     <h4>La liste de mes évennements</h4>
     <div class="">
         <div class="row">
-                @foreach ($evennements as $evennement)
-                    <div class="card-event">
-                        <img src="{{$evennement->image}}" class="card-img-events" alt="...">
-                        <div class="cards-body">
-                            <h5 class="card-title">{{$evennement->nom}}</h5>
-                            <p class="cards-text">{{$evennement->description}}</p>
-                            <p class="cards-text">{{$evennement->date}}</p>
-                            <button type="button" class="nbr-de_place">Places disponibles : 50</button>
-                            </div>
-                    </div>
-                  @endforeach
+              
             </div>
         </div>
     </div>
