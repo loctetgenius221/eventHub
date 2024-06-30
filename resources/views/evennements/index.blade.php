@@ -293,7 +293,7 @@ header{
                             <h5 class="card-title">{{$evennement->nom}}</h5>
                             <p class="cards-text">{{$evennement->description}}</p>
                             <p class="cards-text">{{$evennement->date}}</p>
-                            <button type="button" class="nbr-de_place">Places disponibles : 50</button>
+                            <button type="button" class="nbr-de_place"><a href="{{ route('evennements.show', $evennement->id) }}">Places disponibles : 50</a></button>
                             </div>
                     </div>
                   @endforeach

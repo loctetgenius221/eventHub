@@ -38,8 +38,7 @@ class EvennementController extends Controller
      */
     public function show(Evennement $evennement)
     {
-        $evennement=Evennement::all();
-        return view('evennements.show',compact('evennement'));
+        return view('evennements.show', compact('evennement'));
     }
 
     /**
