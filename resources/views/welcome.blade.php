@@ -10,7 +10,7 @@
         nav {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 2vh; 
+            margin-bottom: 2vh;
         }
         .btn1 button {
             background-color: #FC5C65;
@@ -23,15 +23,15 @@
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
-            padding: 1.5vh 2vh; 
+            padding: 1.5vh 2vh;
             border-radius: 1vh;
             margin-left: 4vh;
         }
         .logo {
-            margin-left: 20vh; 
+            margin-left: 20vh;
         }
         .group-btn {
-            margin-right: 8vh; 
+            margin-right: 8vh;
         }
         header {
             margin-top: 3vh;
@@ -45,11 +45,11 @@
             border-radius: 1vh;
         }
         h1 {
-            font-size: 18vh; 
+            font-size: 18vh;
         }
         .custom-caption {
             text-align: left;
-            padding-bottom: 10vh; 
+            padding-bottom: 10vh;
         }
         .card-text, p, .card-title {
             text-align: left;
@@ -60,22 +60,22 @@
             color: white;
             padding: 0.5vh 1.5vh;
             border-radius: 2vh;
-            text-align: right; 
+            text-align: right;
         }
         .card {
             margin-bottom: 3vh;
         }
         h2 {
-            margin-left: 12vh; 
-            margin-top: 11vh; 
-            margin-bottom: 8vh; 
+            margin-left: 12vh;
+            margin-top: 11vh;
+            margin-bottom: 8vh;
             padding-top:6vh
         }
         .btn4 button {
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
-            padding: 1.5vh 2vh; 
+            padding: 1.5vh 2vh;
             border-radius: 1vh;
             margin-left: 4vh;
             margin-left: 10vh;
@@ -134,7 +134,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin: 1rem;
         }
-        
+
 
         .card-image {
             height: 10rem;
@@ -168,7 +168,7 @@
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
-            padding: 1.5vh 2vh; 
+            padding: 1.5vh 2vh;
             border-radius: 1vh;
             margin-bottom: 5vh;
             cursor: pointer;
@@ -183,7 +183,7 @@
             box-shadow: none;
         }
         .carousel-item {
-                height: 90vh; 
+                height: 90vh;
             }
         .card-button:disabled {
             pointer-events: none;
@@ -198,11 +198,11 @@
 
             h2 {
                 font-size: 3vh;
-                margin-left: 3vh; 
+                margin-left: 3vh;
             }
 
             .carousel-item {
-                height: 50vh; 
+                height: 50vh;
             }
 
             .custom-caption p, .custom-caption h1 {
@@ -220,7 +220,7 @@
                 text-align: center;
             }
 
-            
+
         }
     </style>
 </head>
@@ -230,7 +230,7 @@
         <nav>
             <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
             <div class="group-btn">
-                <a href="#" class="btn1"><button>Se connecter</button></a>
+                <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
                 <a href="#" class="btn2"><button>S'inscrire</button></a>
             </div>
         </nav>
@@ -296,31 +296,31 @@
            <div>
           <h3>Lorem</h3>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Vivamus lacinia odio vitae vestibulum vestibulum. Cras 
-             venenatis euismod malesuada. Integer sagittis, metus in 
-             accumsan hendrerit, justo sapien sollicitudin libero, a 
-             dapibus nisi risus in ante. Sed do eiusmod tempor incididunt 
-             ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+             Vivamus lacinia odio vitae vestibulum vestibulum. Cras
+             venenatis euismod malesuada. Integer sagittis, metus in
+             accumsan hendrerit, justo sapien sollicitudin libero, a
+             dapibus nisi risus in ante. Sed do eiusmod tempor incididunt
+             ut labore et dolore magna aliqua. Ut enim ad minim veniam,
              quis nostrud exercitation ullamco laboris nisi ut aliqu</p>
            </div>
            <div>
           <h3>Lorem</h3>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Vivamus lacinia odio vitae vestibulum vestibulum. Cras 
-             venenatis euismod malesuada. Integer sagittis, metus in 
-             accumsan hendrerit, justo sapien sollicitudin libero, a 
-             dapibus nisi risus in ante. Sed do eiusmod tempor incididunt 
-             ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+             Vivamus lacinia odio vitae vestibulum vestibulum. Cras
+             venenatis euismod malesuada. Integer sagittis, metus in
+             accumsan hendrerit, justo sapien sollicitudin libero, a
+             dapibus nisi risus in ante. Sed do eiusmod tempor incididunt
+             ut labore et dolore magna aliqua. Ut enim ad minim veniam,
              quis nostrud exercitation ullamco laboris nisi ut aliqu</p>
            </div>
            <div>
           <h3>Lorem</h3>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Vivamus lacinia odio vitae vestibulum vestibulum. Cras 
-             venenatis euismod malesuada. Integer sagittis, metus in 
-             accumsan hendrerit, justo sapien sollicitudin libero, a 
-             dapibus nisi risus in ante. Sed do eiusmod tempor incididunt 
-             ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+             Vivamus lacinia odio vitae vestibulum vestibulum. Cras
+             venenatis euismod malesuada. Integer sagittis, metus in
+             accumsan hendrerit, justo sapien sollicitudin libero, a
+             dapibus nisi risus in ante. Sed do eiusmod tempor incididunt
+             ut labore et dolore magna aliqua. Ut enim ad minim veniam,
              quis nostrud exercitation ullamco laboris nisi ut aliqu</p>
            </div>
         </div>
@@ -328,7 +328,7 @@
 
     <div class="container1">
     <h2>Événements récents</h2>
-    
+
     <div class="cards-container">
       <div class="card">
         <div class="card-image"></div>
@@ -342,7 +342,7 @@
           <button type="button" class="card-button">Voir plus</button>
         </div>
       </div>
-      
+
       <div class="card">
         <div class="card-image"></div>
         <div class="card-content">

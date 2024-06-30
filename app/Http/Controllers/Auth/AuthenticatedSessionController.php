@@ -28,7 +28,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // On recupère l'utilisateur authentifié
+        $user = Auth::user();
+
+        if ($user->hasRole('admin')) {
+            return redirect()->intended(route('admin.dashboard'));
+        } elseif ($user->hasRole('association')) {
+            return redirect()->intended(route('association.dashboard'));
+        } elseif ($user->hasRole('participant')) {
+            // ! ici pour la redirection rediriger vers le formulaire d'inscription à un évennement
+            return redirect()->intended(route('participant.dashboard'));
+        } else {
+            return redirect()->intended(route('home'));
+        }
+
+        // return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
