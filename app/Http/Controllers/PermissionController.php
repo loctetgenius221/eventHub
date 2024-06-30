@@ -3,15 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+// use Illuminate\Validation\Rule;
+
 
 class PermissionController extends Controller
+
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $permissions=Permission::get();
+        return view('role-permission.permision.index',[
+            'permissions' =>$permissions        ]);
     }
 
     /**
@@ -19,7 +25,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('role-permission.permision.create');
     }
 
     /**
@@ -27,7 +33,17 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'name'=>[
+             'required',
+             'unique:permissions',
+             'string',
+           ]
+        ]);
+        Permission::create([
+            'name' => $request->name
+        ]);
+        return redirect('permissions')->with('status','Permission créée avec succés');
     }
 
     /**
@@ -41,24 +57,39 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Permission $permission)
     {
-        //
+        
+        return view('role-permission.permision.edit',[
+            'permission' =>$permission 
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        $request->validate([
+            'name'=>[
+              'required',
+            //   Rule::unique('permissions')->ignore($permission->id),
+              'string',
+            ]
+         ]);
+         $permission->update([
+             'name' => $request->name
+         ]);
+         return redirect('permissions')->with('status','Permission modifiée avec succés');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($permissionId)
     {
-        //
+        $permission=Permission::find($permissionId);
+        $permission->delete();
+        return redirect('permissions')->with('status','Permission supprimée avec succés');
     }
 }
