@@ -29,6 +29,7 @@ Route::resources([
 ]);
 
 Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->name('evennement.detail');
+Route:: get('inscription/{id}', [EvennementController::class, 'inscription']);
 
 require __DIR__.'/auth.php';
 //rouet pour les permissions
