@@ -87,7 +87,7 @@
             margin-left: 12vh;
             margin-top: 11vh;
             margin-bottom: 8vh;
-            padding-top: 6vh
+            padding-top:6vh
         }
 
         .btn4 button {
@@ -168,7 +168,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin: 1rem;
         }
-
         .card-image {
             height: 10rem;
             border-top-left-radius: 1rem;
@@ -225,6 +224,39 @@
             opacity: 0.5;
             box-shadow: none;
         }
+
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 10vh;
+            }
+
+            h2 {
+                font-size: 3vh;
+                margin-left: 3vh;
+            }
+
+            .carousel-item {
+                height: 50vh;
+            }
+
+            .custom-caption p, .custom-caption h1 {
+                font-size: 2vh;
+            }
+
+            .btn3 button, .btn4 button {
+                padding: 1vh;
+                font-size: 2vh;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+
+        }
     </style>
 </head>
 
@@ -235,6 +267,9 @@
             <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
             <div class="group-btn">
                 <a href="" class="btn1"><button>Se connecter</button></a>
+
+                <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
+
                 <a href="#" class="btn2"><button>S'inscrire</button></a>
             </div>
         </nav>
@@ -290,6 +325,7 @@
     </div>
     <div>
         <h2>Services</h2>
+
         <div class="container3">
             <div>
                 <div class="caisse1">
@@ -327,10 +363,13 @@
                         laboris nisi ut aliqu</p>
                 </div>
             </div>
+
+   
         </div>
     </div>
 
     <div class="container1">
+
         <h2>Événements récents</h2>
         <div class="cards-container">
             @foreach($evennements as $evennement)
@@ -354,6 +393,8 @@
             @endforeach
         </div>
         <a href="#" class="btn4"><button>Voir tous les événements</button></a>
+      </div>
+
     </div>
 
     <div class="coordonnee">
