@@ -266,7 +266,6 @@
         <nav>
             <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
             <div class="group-btn">
-                <a href="" class="btn1"><button>Se connecter</button></a>
 
                 <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
 
@@ -387,7 +386,7 @@
                     </p>
                 </div>
                 <div class="card-actions">
-                    <button type="button" class="card-button">Voir plus</button>
+                    <a href="evennement/detail/{{ $evennement->id }}"type="button" class="card-button">Voir plus</a>
                 </div>
             </div>
             @endforeach

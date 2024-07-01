@@ -63,3 +63,5 @@ Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermi
 Route::get('/formulaire',[UserController::class,'register']);
 Route::post('/users', [UserController::class, 'store']);
 
+// route pour reservation
+

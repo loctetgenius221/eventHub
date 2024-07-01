@@ -11,19 +11,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soirée Éblouissante : Dîner Gala Annuel</title>
     <link rel="stylesheet" href="{{ asset('css/participant/detail.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </head>
 <body>
 
     <main>
         <section class="event-details">
-            <img src="{{ asset('img/culture1.jpg') }}" alt="Event Image" class="event-image">
+        <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="" class="event-image">
+            <!-- <img src="{{ asset('img/culture1.jpg') }}" alt="Event Image" class="event-image"> -->
             <div class="event-info">
-                <h1>Soirée Éblouissante : Dîner Gala Annuel - Dakar</h1>
-                <p>Jeudi, 23 Juillet à 20h<br>L'événement dure 2 heures</p>
-                <p>Organisé par Simplon</p>
+                <h1>{{$evennement->nom}}</h1>
+                <p>{{$evennement->duree}}</p>
+                <p>{{$evennement->lieu}}</p>
+                <p>Organisé par simplon </p>
                 <div class="event-info-bottom">
-                    <a href="#" class="btn1"><button>S'inscrire</button></a>
+                    <a href="#" class="btn1" data-bs-toggle="modal" data-bs-target="#myModal"><button>S'inscrire</button></a>
+                    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Inscription à l'événement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Contenu de la modale -->
+        <form action="" method="POST">
+           <div> <label for="">Votre prénom et nom</label>
+          <input type="text"></div>
+          <div> <label for="">Votre email</label>
+          <input type="email"></div>
+          <div><label for="">Votre mot de passe</label>
+          <input type="password"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Je m'inscris</button>
+      </div>
+    </div>
+  </div>
+</div>
+
                     <p>Places disponibles : 50</p>
                 </div>
             </div>
@@ -31,9 +60,7 @@
         <section class="description">
             <h2>Description</h2>
             <p>
-                Plongez dans une soirée d'élégance et de raffinement lors de notre Dîner Gala Annuel. À votre arrivée, profitez d'un cocktail de bienvenue avec des hors-d'œuvre raffinés, tout en échangeant avec des invités prestigieux. Savourez ensuite un dîner gastronomique préparé par un chef étoilé, avec des plats exquis et des vins soigneusement sélectionnés.
-                La soirée sera ponctuée par des discours inspirants et des remises de prix célébrant les réalisations exceptionnelles de l'année. Entre chaque plat, des animations captivantes, comme des performances musicales et des spectacles artistiques, vous émerveilleront.
-                Pour clôturer cette soirée mémorable, rejoignez-nous sur la piste de danse pour célébrer jusqu'au bout de la nuit avec un DJ renommé ou un orchestre live. Venez habillés en tenue de gala et vivez une soirée inoubliable dans un cadre somptueux.
+            {{$evennement->description}}
             </p>
         </section>
         <section class="contact-location">
