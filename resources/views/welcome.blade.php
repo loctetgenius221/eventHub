@@ -80,7 +80,7 @@
             border: 0.2vh solid #FC5C65;
             padding: 1.5vh 2vh; 
             border-radius: 1vh;
-            margin-left: 65vh;
+            margin-left: 82vh;
             margin-bottom: 5vh
         }
         .container1 {
@@ -159,7 +159,6 @@
 
         .card-image {
             height: 10rem;
-            background: url('https://img.freepik.com/vecteurs-libre/illustration-celebration-journee-afrique-plate_23-2149367532.jpg?t=st=1719684128~exp=1719687728~hmac=9ab93157dabfedd2b5307cc8785ccf9a6bf950b6108a1f657ac69a6f5f40ce9b&w=740') no-repeat center center/cover;
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
         }
@@ -282,34 +281,7 @@
                     <div class="carousel-caption d-none d-md-block custom-caption">
                         <p>23 Juillet 2024</p>
                         <h1>Concours de Slam</h1>
-                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Participer</button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
+                        <p><a href="#" class="btn3"><button>Voir plus</button></a></p>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -317,7 +289,7 @@
                     <div class="carousel-caption d-none d-md-block custom-caption">
                         <p>25 Juillet 2024</p>
                         <h1>Journée portes ouvertes</h1>
-                        <p><a href="#" class="btn3"><button>Participer</button></a></p>
+                        <p><a href="#" class="btn3"><button>Voir plus</button></a></p>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -325,7 +297,7 @@
                     <div class="carousel-caption d-none d-md-block custom-caption">
                         <p>26 Juillet 2024</p>
                         <h1>TED <br> Talks</h1>
-                        <p><a href="#" class="btn3"><button>Participer</button></a></p>
+                        <p><a href="#" class="btn3"><button>Voir plus</button></a></p>
                     </div>
                 </div>
             </div>
@@ -388,21 +360,24 @@
 
     <div class="container1">
         <h2>Événements récents</h2>
-        <div class="cards-container">
-            <div class="card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h5 class="card-title">Journée de la femme africaine</h5>
-                    <h6>20 Juillet 2024</h6>
-                    <p class="card-text">Sénégal, Dakar</p>
-                    <p>Nombre de places disponibles: 100</p>
-                </div>
-                <div class="card-actions">
-                    <button type="button" class="card-button">Voir plus</button>
-                </div>
+        @foreach($evennements as $evennement)
+    <div class="cards-container">
+        <div class="card">
+        <div class="card-image" style="background: url('{{$evennement->image}}') no-repeat center center/cover;"></div>
+            <div class="card-content">
+                <h5 class="card-title">{{$evennement->nom}}</h5>
+                <h6>{{$evennement->date}}</h6>
+                <p class="card-text">{{$evennement->lieu}}</p>
+                <p>Nombre de places disponibles: 100</p>
+            </div>
+            <div class="card-actions">
+                <button type="button" class="card-button">Voir plus</button>
             </div>
         </div>
-        <a href="#" class="btn4"><button>Voir tous les événements</button></a>
+    </div>
+    <a href="#" class="btn4"><button>Voir tous les événements</button></a>
+@endforeach
+
     </div>
     <div class="coordonnee">
       <div>

@@ -9,9 +9,7 @@ use App\Http\Controllers\EvennementController;
 use App\Http\Controllers\ReservationController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[EvennementController::class,'acceuil']);
 
 //les controller pour les crud associations /avenements /reservations avec les ressources
 Route::resources([

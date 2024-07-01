@@ -16,6 +16,12 @@ class EvennementController extends Controller
         return view('evennements.index',compact('evennements'));
     }
 
+    public function acceuil(){
+         $evennements = Evennement::take(3)->get();
+
+         return view ('welcome',compact('evennements'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
