@@ -29,8 +29,5 @@ Route::get('roles/{rolesId}/delete', [RoleController::class,'destroy']);
 Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
 Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
 
-<<<<<<< HEAD
 Route::get('/formulaire',[UserController::class,'register']);
 Route::post('/users', [UserController::class, 'store']);
-=======
->>>>>>> feature/crud_evenement
