@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    height: 50px;
+}
+
+.header-buttons .btn {
+    background-color: #ff4081;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.header-buttons .btn:hover {
+    background-color: #e53070;
+}
+
+.event-details {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event-image {
+    flex: 1;
+    flex-basis: 100%;
+    height: 518px;
+    border-radius: none;
+    object-fit: cover;
+}
+
+.event-info {
+    position: absolute;
+    flex: 2;
+    width: 35rem;
+    margin-left: 20px;
+    background: #fff;
+    padding: 20px;
+}
+
+.event-info h1 {
+    margin-bottom: 10px;
+}
+
+.event-info-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.description, .contact-location {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.description p {
+    line-height: 1.8rem;
+}
+
+.contact-location {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.contact, .location {
+    flex: 1;
+    margin: 10px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .header-container, .event-details, .contact-location {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .event-info {
+        position: relative;
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .event-info-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .event-image {
+        width: 100%;
+        height: 518px;
+    }
+
+    .location iframe {
+        width: 300px;
+        height: 250px;
+    }
+
+    .contact, .location {
+        flex: 1;
+        margin: 0px;
+    }
+}

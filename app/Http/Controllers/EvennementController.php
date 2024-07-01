@@ -21,7 +21,7 @@ class EvennementController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -56,7 +56,7 @@ class EvennementController extends Controller
      */
     public function update(Request $request, Evennement $evennement)
     {
-        
+
         $validatedData = $request->validate([
             'nom' => 'required|max:255',
             'date' => 'required|date',
@@ -79,5 +79,10 @@ class EvennementController extends Controller
     {
         $evennement->delete();
         return redirect('evennements')->with('success', 'Evénnement supprimée avec succès.');
+    }
+
+    public function detail($id) {
+        $evennement = Evennement::find($id);
+        return view('evennements.detail', compact('evennement'));
     }
 }

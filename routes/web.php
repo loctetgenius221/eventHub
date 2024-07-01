@@ -28,6 +28,8 @@ Route::resources([
     // 'reservations' => ReservationController::class,
 ]);
 
+Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->name('evennement.detail');
+
 require __DIR__.'/auth.php';
 //rouet pour les permissions
 Route::resource('permissions', PermissionController::class);
