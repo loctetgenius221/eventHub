@@ -19,13 +19,16 @@
             padding: 1.5vh;
             border-radius: 1vh;
         }
-        .btn2 button {
+        .btn2  {
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
             padding: 1.5vh 2vh; 
             border-radius: 1vh;
             margin-left: 4vh;
+        }
+        .btn2:hover{
+            background:none
         }
         .logo {
             margin-left: 20vh; 
@@ -77,8 +80,7 @@
             border: 0.2vh solid #FC5C65;
             padding: 1.5vh 2vh; 
             border-radius: 1vh;
-            margin-left: 4vh;
-            margin-left: 10vh;
+            margin-left: 65vh;
             margin-bottom: 5vh
         }
         .container1 {
@@ -98,21 +100,40 @@
         }
         footer {
             background-color: #FC5C65;
-            padding: 2vh;
+            padding: 25px 0;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            flex-wrap: wrap;
+            border-top: 1px solid #ddd;
+            color:white
         }
-        footer .footer-section {
-            margin: 1vh;
+
+        .footer-section {
+            text-align: center;
         }
-        footer .footer-section p {
-            margin: 0;
-            color: white;
+
+        .footer-section p {
+            margin: 5px 0;
         }
-        footer .footer-section img {
-            height: 60px;
+
+        .footer-section strong {
+            font-weight: bold;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background-color: white;
+            color: #FC5C65;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         .cards-container {
@@ -173,6 +194,13 @@
             margin-bottom: 5vh;
             cursor: pointer;
         }
+        .container3{
+            display:flex;
+            justify-content:space-around
+        }
+        .contenu p{
+            width:90vh
+        }
 
         .card-button:hover {
             box-shadow: 0 6px 8px rgba(66, 153, 225, 0.4);
@@ -190,8 +218,9 @@
             opacity: 0.5;
             box-shadow: none;
         }
+       
 
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
             h1 {
                 font-size: 10vh;
             }
@@ -221,7 +250,7 @@
             }
 
             
-        }
+        } */
     </style>
 </head>
 <body>
@@ -231,7 +260,11 @@
             <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
             <div class="group-btn">
                 <a href="#" class="btn1"><button>Se connecter</button></a>
-                <a href="#" class="btn2"><button>S'inscrire</button></a>
+                <select name="" id="" class="btn2">
+                <a href=""><option  default value>S'inscrire</option></a> 
+                   <a href="/"><option value="">Association</option></a> 
+                   <a href=""><option value="">Participant</option></a> 
+                </select>
             </div>
         </nav>
     </header>
@@ -249,7 +282,34 @@
                     <div class="carousel-caption d-none d-md-block custom-caption">
                         <p>23 Juillet 2024</p>
                         <h1>Concours de Slam</h1>
-                        <p><a href="#" class="btn3"><button>Participer</button></a></p>
+                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Participer</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -293,7 +353,7 @@
         </div>
         </div>
         <div>
-           <div>
+           <div class="contenu">
           <h3>Lorem</h3>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Vivamus lacinia odio vitae vestibulum vestibulum. Cras 
@@ -303,7 +363,7 @@
              ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
              quis nostrud exercitation ullamco laboris nisi ut aliqu</p>
            </div>
-           <div>
+           <div class="contenu">
           <h3>Lorem</h3>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Vivamus lacinia odio vitae vestibulum vestibulum. Cras 
@@ -313,7 +373,7 @@
              ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
              quis nostrud exercitation ullamco laboris nisi ut aliqu</p>
            </div>
-           <div>
+           <div class="contenu">
           <h3>Lorem</h3>
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Vivamus lacinia odio vitae vestibulum vestibulum. Cras 
@@ -327,68 +387,47 @@
     </div>
 
     <div class="container1">
-    <h2>Événements récents</h2>
-    
-    <div class="cards-container">
-      <div class="card">
-        <div class="card-image"></div>
-        <div class="card-content">
-          <h5 class="card-title">Tailwind card</h5>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc felis ligula.
-          </p>
+        <h2>Événements récents</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h5 class="card-title">Journée de la femme africaine</h5>
+                    <h6>20 Juillet 2024</h6>
+                    <p class="card-text">Sénégal, Dakar</p>
+                    <p>Nombre de places disponibles: 100</p>
+                </div>
+                <div class="card-actions">
+                    <button type="button" class="card-button">Voir plus</button>
+                </div>
+            </div>
         </div>
-        <div class="card-actions">
-          <button type="button" class="card-button">Voir plus</button>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-image"></div>
-        <div class="card-content">
-          <h5 class="card-title">Autre card</h5>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-        <div class="card-actions">
-          <button type="button" class="card-button">Voir plus</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-image"></div>
-        <div class="card-content">
-          <h5 class="card-title">Encore une card</h5>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec libero non sapien facilisis vestibulum.
-          </p>
-        </div>
-        <div class="card-actions">
-          <button type="button" class="card-button">Voir plus</button>
-        </div>
-      </div>
+        <a href="#" class="btn4"><button>Voir tous les événements</button></a>
     </div>
-
-    <a href="#" class="btn4"><button>Voir tous les événements</button></a>
-  </div>
     <div class="coordonnee">
       <div>
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15435.500681553951!2d-17.489517512841825!3d14.719648700000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec173b9452a5ad5%3A0xb798e476c4492163!2sFabrique%20Simplon%20S%C3%A9n%C3%A9gal!5e0!3m2!1sfr!2ssn!4v1719492633010!5m2!1sfr!2ssn" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     </div>
-   <footer>
-   <div class="footer-section">
-       <img src="{{ asset('img/logo.png') }}" width="auto" height="60">
-   </div>
-   <div class="footer-section">
-       <p>Contact us: <br> Email: contact@example.com <br> Phone: +123 456 7890</p>
-   </div>
-   <div class="footer-section">
-       <p>Follow us:</p>
-       <p>Facebook | Twitter | Instagram</p>
-   </div>
-   </footer>
+    <footer>
+        <div class="footer-section">
+            <img src="{{ asset('img/logo.png') }}" width="auto" height="60">
+        </div>
+        <div class="footer-section">
+            <p><strong>Contactez-nous:</strong> <br> Email: contact@example.com <br> Téléphone:33-200-30-30</p>
+        </div>
+        <div class="footer-section">
+            <p><strong>Suivez-nous sur:</strong></p>
+            <p>Facebook | Twitter | Instagram</p>
+        </div>
+        <div class="footer-section">
+            <p><strong>Soyez au courant de tous les événements:</strong></p>
+            <form class="newsletter-form" action="/subscribe" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Souscrire</button>
+            </form>
+        </div>
+    </footer>
 
 </body>
 </html>

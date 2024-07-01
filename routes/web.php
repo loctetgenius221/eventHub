@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AssociationController;
-use App\Http\Controllers\RoleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +19,6 @@ Route::resource('roles', RoleController::class);
 Route::get('roles/{rolesId}/delete', [RoleController::class,'destroy']);
 Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
 Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
+
+Route::get('/formulaire',[UserController::class,'register']);
+Route::post('/users', [UserController::class, 'store']);
