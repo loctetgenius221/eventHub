@@ -17,11 +17,20 @@ Route::resources([
     'evennements' => EvennementController::class,
     // 'reservations' => ReservationController::class,
 ]);
+
 // route pour les permissions
 Route::resource('permissions', PermissionController::class);
 Route::get('permissions/{permissionsId}/delete', [PermissionController::class,'destroy']);
 
 // route pour les role
+
+
+//rouet pour les permissions
+Route::resource('permissions', PermissionController::class);
+Route::get('permissions/{permissionsId}/delete', [PermissionController::class,'destroy']);
+
+//route pour les role
+
 Route::resource('roles', RoleController::class);
 Route::get('roles/{rolesId}/delete', [RoleController::class,'destroy']);
 Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
