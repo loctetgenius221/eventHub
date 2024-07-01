@@ -43,8 +43,8 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'phone' => $data['phone'],
-            'address' => $data['address'],
+            'phone' => $request->phone,
+            'address' => $request->address,
         ]);
 
         $user->assignRole('participant');

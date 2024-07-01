@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EvennementController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AssociationController;
-use App\Http\Controllers\RoleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +20,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+//les controller pour les crud associations /avenements /reservations avec les ressources
+Route::resources([
+    // 'associations' => AssociationController::class,
+    'evennements' => EvennementController::class,
+    // 'reservations' => ReservationController::class,
+]);
 
 require __DIR__.'/auth.php';
 //rouet pour les permissions
