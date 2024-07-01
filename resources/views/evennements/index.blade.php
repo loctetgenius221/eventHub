@@ -67,7 +67,7 @@
           <div class="card-content">
             <h5 class="card-title">{{$evennement->nom}}</h5>
             <p class="card-text">
-                {{$evennement->description}}
+                {{ Str::limit($evennement->description , 60);}}
             </p>
           </div>
           <div class="card-actions">
