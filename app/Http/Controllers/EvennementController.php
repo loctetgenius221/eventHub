@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evennement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EvennementController extends Controller
 {
@@ -135,5 +136,22 @@ class EvennementController extends Controller
     public function detail($id) {
         $evennement = Evennement::find($id);
         return view('evennements.detail', compact('evennement'));
+    }
+
+    public function inscription($id) {
+
+        // if (Auth::check()) {
+
+            $user = Auth::user();
+            $evennement = Evennement::find($id);
+
+            // if ($evennement) {
+                return view('evennements.inscription', compact('evennement'));
+        //     } else {
+        //         return redirect()->route('evennements.index')->with('error', 'Événement non trouvé.');
+        //     }
+        // } else {
+        //     return redirect()->route('login')->with('message', 'Veuillez vous connectez pour pouvoir vous inscrire à l\'évennement');
+        // }
     }
 }
