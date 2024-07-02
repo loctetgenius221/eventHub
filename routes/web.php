@@ -11,11 +11,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//les controller pour les crud associations /avenements /reservations avec les ressources
+Route::get('/admin', function () {
+    return view('admins.listes-inscrit');
+});
+
+Route::get('/admin-accueil', function () {
+    return view('admins.accueil');
+});
+//les controller pour les crud avenements avec les ressources
 Route::resources([
-    // 'associations' => AssociationController::class,
     'evennements' => EvennementController::class,
-    // 'reservations' => ReservationController::class,
 ]);
 
 //rouet pour les permissions
