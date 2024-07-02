@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.association-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.association-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.association-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.association-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.association-details h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.association-details p {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.association-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.association-actions input[type="checkbox"] {
+    display: none;
+}
+
+.association-actions input[type="checkbox"] + label {
+    width: 40px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.association-actions input[type="checkbox"]:checked + label {
+    background-color: #ff5e5e;
+}
+
+.association-actions input[type="checkbox"] + label::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: left 0.3s;
+}
+
+.association-actions input[type="checkbox"]:checked + label::after {
+    left: 22px;
+}
+
+.detail-btn {
+    background-color: #ff5e5e;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.detail-btn:hover {
+    background-color: #e55050;
+}
+
+@media (max-width: 768px) {
+    .association-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .association-details {
+        align-items: flex-start;
+    }
+}

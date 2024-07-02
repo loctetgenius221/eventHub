@@ -9,7 +9,7 @@ use App\Http\Controllers\AssociationController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,8 +25,11 @@ Route::middleware('auth')->group(function () {
 Route::resources([
     // 'associations' => AssociationController::class,
     'evennements' => EvennementController::class,
+    'associations' => AssociationController::class,
+
     // 'reservations' => ReservationController::class,
 ]);
+
 
 require __DIR__.'/auth.php';
 //rouet pour les permissions

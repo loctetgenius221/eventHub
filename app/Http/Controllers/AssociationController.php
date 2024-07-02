@@ -11,8 +11,9 @@ class AssociationController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {    
-        
+    {
+        $associations = Association::with('user')->get();
+        return view('associations.index', compact('associations'));
     }
 
     /**
@@ -36,7 +37,7 @@ class AssociationController extends Controller
      */
     public function show(Association $association)
     {
-        //
+        return view('associations.show', compact('association'));
     }
 
     /**
