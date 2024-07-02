@@ -29,6 +29,8 @@ Route::resources([
 
     // 'reservations' => ReservationController::class,
 ]);
+Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
+Route::put('association/valider/{association}', [AssociationController::class, 'validateAssociation'])->name('associations.validate');
 
 
 require __DIR__.'/auth.php';

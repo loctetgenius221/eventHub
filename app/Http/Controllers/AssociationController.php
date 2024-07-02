@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Association;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AssociationValidated;
 
 class AssociationController extends Controller
 {
@@ -14,6 +16,29 @@ class AssociationController extends Controller
     {
         $associations = Association::with('user')->get();
         return view('associations.index', compact('associations'));
+    }
+
+    // Validation des comptes associations
+
+    public function associationsEnAttente()
+    {
+        $associationsEnAttente = Association::where('validated', false)->get();
+
+        return view('associations.assounvalidated', compact('associationsEnAttente'));
+    }
+
+    public function validateAssociation($id)
+    {
+        $association = Association::findOrFail($id);
+        $association->validated = true;
+        $association->save();
+        if ($association->user) {
+            Mail::to($association->user->email)->send(new AssociationValidated($association));
+        } else {
+            return redirect()->back()->with('error', 'L\'association n\'a pas d\'utilisateur associé.');
+        }
+
+        return redirect()->back()->with('success', 'Association validée avec succès.');
     }
 
     /**
