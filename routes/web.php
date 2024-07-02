@@ -2,14 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvennementController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+
+
+Route::get('/admin', function () {
+    return view('admins.accueil');
+});
+// listes des inscrits dans le platforme
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+//les controller pour les crud avenements avec les ressources
+Route::resources([
+    'evennements' => EvennementController::class,
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,6 +46,9 @@ Route::resources([
 Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
 Route::put('association/valider/{association}', [AssociationController::class, 'validateAssociation'])->name('associations.validate');
 
+
+Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->name('evennement.detail');
+Route:: get('inscription/{id}', [EvennementController::class, 'inscription']);
 
 require __DIR__.'/auth.php';
 //rouet pour les permissions

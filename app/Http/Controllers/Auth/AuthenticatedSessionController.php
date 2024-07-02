@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
             // ! ici pour la redirection rediriger vers le formulaire d'inscription à un évennement
             return redirect()->intended(route('inscription'));
         } else {
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('/'));
         }
 
         // return redirect()->intended(route('dashboard', absolute: false));
