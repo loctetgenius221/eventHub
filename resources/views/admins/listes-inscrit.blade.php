@@ -10,21 +10,22 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Prénom</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Téléphone</th>
+                            <th scope="col">Adress</th>
                             <th scope="col">Email</th>
                             <th scope="col">Rôle</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach($users as $user)
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>766149938</td>
-                            <td>Mark@gmail.com</td>
+                            <th scope="row">{{ $user->id }}</th>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->phone}}</td>
+                            <td>{{ $user->address}}</td>
+                            <td>{{ $user->email}}</td>
                             <td><select class="form-select" aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
@@ -35,50 +36,7 @@
                             <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
                           </tr>
                           <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>766149938</td>
-                            <td>jacob@gmail.com</td>
-                            <td><select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </td>
-                            <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>766149938</td>
-                            <td>jacob@gmail.com</td>
-                            <td><select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </td>
-                            <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>766149938</td>
-                            <td>jacob@gmail.com</td>
-                            <td><select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </td>
-                            <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
-                          </tr>
+                            @endforeach
                         </tbody>
                       </table>
                 </div>

@@ -20,7 +20,7 @@
                 <li><a href="#">Dashboard</a></li>
                 <li><a href="#">Association</a></li>
                 <li><a href="#">Evénements</a></li>
-                <li><a href="#">Participants</a></li>
+                <li><a href="{{ route('admin.users.index') }}">Participants</a></li>
                 <li><a href="#">Role/permission</a></li>
             </ul>
         </nav>
@@ -46,7 +46,7 @@
                        <li><a href="#" class="text-gray-800">Dashboard</a></li>
                        <li><a href="#" class="text-gray-800">Association</a></li>
                        <li><a href="#" class="text-gray-800">Evénements</a></li>
-                       <li><a href="#" class="text-gray-800">Participants</a></li>
+                       <li><a href="{{ route('admin.users.index') }}"  class="text-gray-800">Participants</a></li>
                        <li><a href="#" class="text-gray-800">Role/permission</a></li>
                      </ul>
                    </div>
@@ -71,24 +71,6 @@
     @yield('content')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const sidebarLinks = document.querySelectorAll('.sidebar nav ul li a');
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        sidebarLinks[0].classList.add('active');
 
-        const menuToggle = document.querySelector('.menu-toggle');
-        const sidebar = document.querySelector('.sidebar');
-        menuToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-        });
-    });
-</script>
 </body>
 </html>
