@@ -12,14 +12,14 @@
         <div>
         
             <ul class="my-3">
-              <li class="my-3"><i class="fa-solid fa-location-dot mx-2" style="color: #f66151;"></i>Lieu</li>
-            <li class="my-3"><i class="fa-solid fa-phone mx-2" style="color: #f66151;"></i>+221 766149938</li>
-            <li class="my-3"><i class="fa-solid fa-envelope mx-2" style="color: #f66151;"></i>fallou@gmail.com</li>
-            <li class="my-3"><i class="fa-solid fa-calendar-days mx-2" style="color: #f66151;"></i>22/10/12</li>
+              <li class="my-3"><i class="fa-solid fa-location-dot mx-2" style="color: #f66151;"></i>{{$association->adresse}}</li>
+            <li class="my-3"><i class="fa-solid fa-phone mx-2" style="color: #f66151;"></i>{{$user->phone}}</li>
+            <li class="my-3"><i class="fa-solid fa-envelope mx-2" style="color: #f66151;"></i>{{$user->email}}</</li>
+            <li class="my-3"><i class="fa-solid fa-calendar-days mx-2" style="color: #f66151;"></i>{{$association->date_creation}}</li>
             </ul>  
             <hr style="justify-content: center;" class="font-bold">
             <h2 class="my-3 font-bold">Activité</h2>
-            <p class="my-3">description</p>
+            <p class="my-3">{{$association->activite}}</p>
        </div>
        
      {{-- <div class="three"><i class="fa-solid fa-ellipsis-vertical" style="color: #c061cb;"></i></div> --}}
@@ -30,7 +30,8 @@
        
        <div>
         <h1 class="my-3 font-bold">Description</h1>
-           <p>Le lorem ipsum est, en imprimerie, une suite de mots sans  signification utilisée à titre provisoire pour calibrer une mise en  page, le texte définitif venant remplacer le faux-texte dès qu'il est  prêt ou que la mise en page est achevée.</p>  
+        <hr style="justify-content: center;" class="font-bold">
+           <p>{{$association->description}}</p>  
       </div>
       
      </div>

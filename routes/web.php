@@ -23,9 +23,11 @@ Route::get('/admin', function () {
 // listes des inscrits dans le platforme  interface admin
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+Route::put('/users/{user}/update-role', [UserController::class, 'updateRole'])->name('users.updateRole');
 //les controller pour les crud avenements avec les ressources
 Route::resources([
     'evennements' => EvennementController::class,
+    'associations' => AssociationController::class,
 ]);
 
 Route::get('/dashboard', function () {

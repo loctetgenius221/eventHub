@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Association;
 use Illuminate\Http\Request;
 
@@ -35,8 +36,9 @@ class AssociationController extends Controller
      * Display the specified resource.
      */
     public function show(Association $association)
-    {
-        //
+    {   
+        $user = $association->user;
+        return view('admins.detail-association', compact('association','user'));
     }
 
     /**

@@ -27,12 +27,24 @@
                             <td>{{ $user->address}}</td>
                             <td>{{ $user->email}}</td>
                             <td>
-                              <select name="id" id="id" class="form-select"  aria-label="Default select example"  required>
+                              <form action="{{ route('users.updateRole', $user->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <select name="role_id" class="form-select" onchange="this.form.submit()">
+                                    <option value="">Changer le rôle</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}" {{ $user->roles->contains($role->id) ? 'selected' : '' }}>
+                                            {{ $role->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </form>
+                              {{-- <select name="role_id" id="id" class="form-select"  aria-label="Default select example"  required>
                                 <option value="">Changer le rôle</option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
-                              </select>
+                              </select> --}}
                             </td>
                             <td>
                               {{-- <button class="btn btn-danger btn-sm">Supprimer</button> --}}
