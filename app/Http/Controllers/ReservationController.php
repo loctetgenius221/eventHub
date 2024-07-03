@@ -13,7 +13,7 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
+
     public function index()
     {
         $evennement=Evennement::all();
@@ -40,18 +40,26 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
+        $existingReservation = Reservation::where('user_id', Auth::id())
+            ->where('evenement_id', $request->input('evenement_id'))
+            ->first();
+
+        if ($existingReservation) {
+            return redirect()->back()->with('error', 'Vous êtes déjà inscrit à cet événement.');
+        }
+
         $reservation = new Reservation([
 
             'created_at' => now(),
             'evenement_id' => $request->input('evenement_id'),// Assigner l'ID du candidat connecté
-            'user_id' => Auth::id()  
+            'user_id' => Auth::id()
         ]);
          // Enregistrez la reservation dans la base de données
     $reservation->save();
-    return redirect()->back()->with('success', 'réservation soumise avec succès');
-      
-}
-    
+    return redirect(route('home'))->with('success', 'réservation soumise avec succès');
+
+    }
+
 
     /**
      * Display the specified resource.

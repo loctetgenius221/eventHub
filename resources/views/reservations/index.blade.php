@@ -13,10 +13,12 @@
             <form action="{{ route('reservations.store') }}" method="POST">
                 @csrf
                  <!-- Champ caché pour l'ID de l'événement -->
-                
+
 
                 <!-- Champ caché pour l'ID de l'utilisateur -->
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                <input type="hidden" name="evenement_id" value="{{ $evennement->id }}">
+
                 <div class="form-group">
                     <input type="text" name="name" value="{{ auth()->user()->name }}" readonly placeholder="Prénom et nom" required>
                 </div>

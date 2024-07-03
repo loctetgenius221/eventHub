@@ -26,7 +26,7 @@
                 <p>{{$evennement->lieu}}</p>
                 <p>Organisé par simplon </p>
                 <div class="event-info-bottom">
-                    <a href="inscription/{{$evennement->id}}" class="btn1"><button>S'inscrire</button></a>
+                    <a href="{{ route('reservations.create', ['id' => $evennement->id ]) }}" class="btn1"><button>S'inscrire</button></a>
                     <p>Places disponibles : 50</p>
                 </div>
             </div>
