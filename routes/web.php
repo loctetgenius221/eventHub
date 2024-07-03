@@ -12,7 +12,9 @@ use App\Http\Controllers\ProfileController;
 // Autres routes...
 
 Route::get('/', [EvennementController::class, 'acceuil'])->name('home');
-
+Route::get('user-deconnect', function(){
+    Auth::logout();
+});
 // Routes pour les permissions
 Route::resource('permissions', PermissionController::class);
 Route::get('permissions/{permissionsId}/delete', [PermissionController::class, 'destroy']);
@@ -36,7 +38,7 @@ Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->n
 
 // Routes pour les réservations
 Route::resource('reservations', ReservationController::class)->except(['create', 'store']);  // Exclure 'create' et 'store' car ils sont traités dans les routes spécifiques
-Route::get('/reservations/create/{id}', [ReservationController::class, 'create'])->name('reservations.create');
+Route::get('/reservations/create/{id}', [ReservationController::class, 'create'])->name('reservations.create')->middleware('auth');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 // Route pour le formulaire utilisateur

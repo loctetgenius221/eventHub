@@ -55,8 +55,9 @@ class ReservationController extends Controller
             'user_id' => Auth::id()
         ]);
          // Enregistrez la reservation dans la base de données
-    $reservation->save();
-    return redirect(route('home'))->with('success', 'réservation soumise avec succès');
+        $reservation->save();
+        Auth::logout();
+        return redirect(route('home'))->with('success', 'réservation soumise avec succès');
 
     }
 

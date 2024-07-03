@@ -12,8 +12,16 @@
             <h1>Formulaire de réservation à l’événement</h1>
             <form action="{{ route('reservations.store') }}" method="POST">
                 @csrf
-                 <!-- Champ caché pour l'ID de l'événement -->
-
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
 
                 <!-- Champ caché pour l'ID de l'utilisateur -->
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
