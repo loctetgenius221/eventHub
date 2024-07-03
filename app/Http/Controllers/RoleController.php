@@ -41,7 +41,8 @@ class RoleController extends Controller
             ]
         ]);
         Role::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'guard_name' => 'web'  
         ]);
         return redirect('roles')->with('status', 'Role créée avec succès');
     }

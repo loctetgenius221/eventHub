@@ -20,39 +20,13 @@
     <main>
         <section class="event-details">
         <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="" class="event-image">
-            <!-- <img src="{{ asset('img/culture1.jpg') }}" alt="Event Image" class="event-image"> -->
             <div class="event-info">
                 <h1>{{$evennement->nom}}</h1>
                 <p>{{$evennement->duree}}</p>
                 <p>{{$evennement->lieu}}</p>
                 <p>Organisé par simplon </p>
                 <div class="event-info-bottom">
-                    <a href="#" class="btn1" data-bs-toggle="modal" data-bs-target="#myModal"><button>S'inscrire</button></a>
-                    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel">Inscription à l'événement</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Contenu de la modale -->
-        <form action="" method="POST">
-           <div> <label for="">Votre prénom et nom</label>
-          <input type="text"></div>
-          <div> <label for="">Votre email</label>
-          <input type="email"></div>
-          <div><label for="">Votre mot de passe</label>
-          <input type="password"></div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Je m'inscris</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+                    <a href="inscription/{{$evennement->id}}" class="btn1"><button>S'inscrire</button></a>
                     <p>Places disponibles : 50</p>
                 </div>
             </div>
