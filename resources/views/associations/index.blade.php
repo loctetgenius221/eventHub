@@ -25,8 +25,12 @@
                     <p><i class="fas fa-phone"></i>{{ $association->user->phone }}</p>
                 </div>
                 <div class="association-actions">
-                    <input type="checkbox" id="toggle1" checked>
-                    <label for="toggle1"></label>
+                    <form action="{{ route('associations.toggle-suspension', $association->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="suspended" value="0">
+                        <input type="checkbox" id="toggle1" name="suspended" value="1" {{ $association->suspended ? 'checked' : '' }} onchange="this.form.submit()">
+                        <label for="toggle1"></label>
+                    </form>
                     <a href="{{ route('associations.show', ['association' => $association->id]) }}">
                         <button class="detail-btn">Detail</button>
                     </a>

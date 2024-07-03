@@ -41,6 +41,15 @@ class AssociationController extends Controller
         return redirect()->back()->with('success', 'Association validée avec succès.');
     }
 
+    public function toggleSuspension(Request $request, $id)
+    {
+        $association = Association::findOrFail($id);
+        $association->suspended = $request->input('suspended') === '1';
+        $association->save();
+
+        return redirect()->back()->with('success', 'Le statut de suspension de l\'association a été mis à jour.');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -43,8 +43,12 @@ Route::resources([
 
     // 'reservations' => ReservationController::class,
 ]);
+
+// dashboard admin gestion des associations
 Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
 Route::put('association/valider/{association}', [AssociationController::class, 'validateAssociation'])->name('associations.validate');
+Route::post('/associations/{id}/toggle-suspension', [AssociationController::class, 'toggleSuspension'])->name('associations.toggle-suspension');
+
 
 
 Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->name('evennement.detail');
