@@ -21,7 +21,6 @@
             <h2 class="my-3 font-bold">Activité</h2>
             <p class="my-3">{{$association->activite}}</p>
        </div>
-       
      {{-- <div class="three"><i class="fa-solid fa-ellipsis-vertical" style="color: #c061cb;"></i></div> --}}
     </div>
     </div>
@@ -39,6 +38,12 @@
      
   </div>
 </div>
+
+            <div class="ninea">
+                <div class="ninea-button">
+                    <span class="icon">NINEA: {{ $association->ninea }}</span>
+                </div>
+            </div>
 
 
 

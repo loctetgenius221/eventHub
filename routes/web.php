@@ -11,14 +11,15 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/admin-detail', function () {
-    return view('admins.detail-association');
-});
 
 Route::get('/admin', function () {
     return view('admins.accueil');
+});
+
+Route::get('/association-listes', function () {
+    return view('admins.listes-associations');
 });
 // listes des inscrits dans le platforme  interface admin
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
@@ -39,6 +40,22 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+//les controller pour les crud associations /avenements /reservations avec les ressources
+Route::resources([
+    // 'associations' => AssociationController::class,
+    'evennements' => EvennementController::class,
+    'associations' => AssociationController::class,
+
+    // 'reservations' => ReservationController::class,
+]);
+
+// dashboard admin gestion des associations
+Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
+Route::put('association/valider/{association}', [AssociationController::class, 'validateAssociation'])->name('associations.validate');
+Route::post('/associations/{id}/toggle-suspension', [AssociationController::class, 'toggleSuspension'])->name('associations.toggle-suspension');
+
 
 
 Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->name('evennement.detail');
