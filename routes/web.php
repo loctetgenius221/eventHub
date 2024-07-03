@@ -40,12 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//les controller pour les crud associations /avenements /reservations avec les ressources
-Route::resources([
-    // 'associations' => AssociationController::class,
-    'evennements' => EvennementController::class,
-    // 'reservations' => ReservationController::class,
-]);
 
 Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->name('evennement.detail');
 Route:: get('inscription/{id}', [EvennementController::class, 'inscription']);
