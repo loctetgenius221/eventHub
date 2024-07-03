@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 
 // Autres routes...
 
-Route::get('/', [EvennementController::class, 'acceuil']);
+Route::get('/', [EvennementController::class, 'acceuil'])->name('home');
 
 // Routes pour les permissions
 Route::resource('permissions', PermissionController::class);

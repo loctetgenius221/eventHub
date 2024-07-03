@@ -266,9 +266,7 @@
         <nav>
             <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
             <div class="group-btn">
-
-                <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
-
+ <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
                 <a href="#" class="btn2"><button>S'inscrire</button></a>
             </div>
         </nav>
