@@ -17,12 +17,6 @@ Route::get('user-deconnect', function(){
 });
 // Routes pour les permissions
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
 Route::get('/admin', function () {
     return view('admins.accueil');
 });
@@ -81,5 +75,3 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 Route::get('/formulaire', [UserController::class, 'register']);
 Route::post('/users', [UserController::class, 'store']);
 
-// Routes pour l'authentification
-require __DIR__ . '/auth.php';
