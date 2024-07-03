@@ -56,6 +56,8 @@
     </style>
 </head>
 <body>
+
+@include('role-permission.nav-links')
     <div class="d-flex">
         <div class="sidebar d-flex flex-column align-items-center p-3 text-white">
         <div class="logo mb-5"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
@@ -74,47 +76,40 @@
        <div class="container mt-5">
            <div class="row">
              <div class="col-md-12">
-                @if(session('status'))
-                  <div class="alert alert-success">{{session('status')}}</div>
-                @endif
+
+             @if (session('status'))
+             <div class="alert alert success">{{session ('status')}}</div>
+             @endif
                <div class="card">
-                <div class="card-header">
-                <h4>Role: {{$role->name}}
-                    <a href="{{url('roles')}}" class="btn btn-primary float-end">Retour</a>
+                <div class="card-header mt-3">
+                <h4>Utilisateur
+                    <a href="{{url('users/create')}}" class="btn btn-primary float-end">Ajouter un utilisateur</a>
                    </h4>
                 </div>
                <div class="card-body">
-                  <form action="{{url('roles/'.$role->id.'/give-permissions')}}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="mb-3">
-                        @error('permissions')
-                         <span class="text-danger">{{$message}}</span>
-                        @enderror
-                      <label for="">Permissions</label>
-                      <div class="row">
-                       @foreach ($permissions as $permission)
-
-                        <div class="col-md-2">
-                            <label for="">
-                            <input type="checkbox" 
-                            name="permission[]" 
-                            class="for-control" 
-                            value="{{$permission->name}}"
-                            {{in_array ($permission->id, $rolePermissions) ? 'checked': ''}}
-                            />
-
-                            {{$permission->name}}
-                            </label>
-                        </div>
+                   <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($users as $user)
+                        <tr>
+                            <td>{{$user->id}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>
+                                <a href="{{url('users/'.$user->id.'/edit')}}" class="btn btn-success">Modifier</a>
+                                <a href="{{url('users/'.$user->id.'/delete')}}" class="btn btn-danger mx-2">Supprimer</a>
+                            </td>
+                        </tr>
                         @endforeach
-                      </div>
-                      
-                    </div>
-                    <div class="mb-3">
-                      <button type="submit" class="btn btn-primary">Modifier</button>
-                    </div>
-                  </form>
+                      </tbody>
+                   </table>
                </div>
              </div>
            </div>
@@ -127,3 +122,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
