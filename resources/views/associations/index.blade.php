@@ -1,3 +1,7 @@
+@extends('layouts/admins.app')
+
+@section('content')
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -35,3 +39,4 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
+@endsection
