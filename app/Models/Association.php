@@ -11,7 +11,14 @@ class Association extends Model
     use HasFactory, HasRoles;
 
     protected $fillable = [
-        'user_id','association_name', 'logo', 'description', 'adresse', 'activite', 'ninea', 'date_creation'
+        'user_id',
+        'logo',
+        'description',
+        'adresse',
+        'activite',
+        'ninea',
+        'date_creation',
+        'validated',
     ];
 
     public function user()

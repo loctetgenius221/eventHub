@@ -15,7 +15,9 @@ Route::get('/', [EvennementController::class, 'acceuil'])->name('home');
 Route::get('user-deconnect', function(){
     Auth::logout();
 });
-// Routes pour les permissions
+
+
+
 
 Route::get('/admin', function () {
     return view('admins.accueil');
@@ -41,8 +43,16 @@ Route::middleware('auth')->group(function () {
 Route::resources([
     // 'associations' => AssociationController::class,
     'evennements' => EvennementController::class,
+    'associations' => AssociationController::class,
+
     // 'reservations' => ReservationController::class,
 ]);
+
+// dashboard admin gestion des associations
+Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
+Route::put('association/valider/{association}', [AssociationController::class, 'validateAssociation'])->name('associations.validate');
+Route::post('/associations/{id}/toggle-suspension', [AssociationController::class, 'toggleSuspension'])->name('associations.toggle-suspension');
+
 
 require __DIR__.'/auth.php';
 //rouet pour les permissions
