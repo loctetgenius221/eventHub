@@ -16,36 +16,60 @@
                             @csrf
                             <div class="col-md-4">
                                 <label for="inputEmail4" class="form-label">Nom</label>
-                                <input type="text" class="form-control" id="inputEmail4" placeholder="Titre de l'évennemnt" name="nom">
+                                <input type="text" class="form-control @error('nom') is-invalid @enderror"" id="inputEmail4" placeholder="Titre de l'évennemnt" name="nom" value="{{ old('nom') }}">
+                                    @error('nom')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                             </div>
                             <div class="col-md-4">
                                 <label for="inputPassword4" class="form-label">Date</label>
-                                <input type="date" class="form-control" id="inputPassword4" name="date">
+                                <input type="date" class="form-control @error('date') is-invalid @enderror"" id="inputPassword4" name="date " value="{{ old('date') }}">
+                                @error('date')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                             </div>
                             <div class="col-4">
                                 <label for="inputAddress" class="form-label">Lieu</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="Lieu de l'évenement" name="lieu">
+                                <input type="text" class="form-control @error('lieu') is-invalid @enderror"" id="inputAddress" placeholder="Lieu de l'évenement" name="lieu" value="{{ old('lieu') }}">
+                                @error('lieu')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                             </div>
                             <div class="col-4">
                                 <label for="inputAddress2" class="form-label">Durée</label>
-                                <input type="time" class="form-control" id="inputAddress2" placeholder="durée de l'évennement" name="duree">
+                                <input type="time" class="form-control @error('duree') is-invalid @enderror"" id="inputAddress2" placeholder="durée de l'évennement" name="duree" value="{{ old('duree') }}">
+                                @error('duree')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             </div>
                             <div class="col-md-4">
                                     <label for="exampleFormControlTextarea1" class="form-label">Nombre de place</label>
-                                    <input type="number" class="form-control" id="inputAddress2" placeholder="le nombre de place disponible" name="nombre_de_place">
+                                    <input type="number" class="form-control @error('nombre_de_place') is-invalid @enderror" id="inputAddress2" placeholder="le nombre de place disponible" name="nombre_de_place" value="{{ old('nombre_de_place') }}">
+                                    @error('nombre_de_place')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                             </div>
                             <div class="col-md-4">
                                 <label for="exampleFormControlTextarea1" class="form-label">Date limite</label>
-                                <input type="date" class="form-control" id="inputAddress2" placeholder="date limite de l'évennement" name="date_limite">
+                                <input type="date" class="form-control @error('date_limite') is-invalid @enderror"" id="inputAddress2" placeholder="date limite de l'évennement" name="date_limite" value="{{ old('date_limite') }}">
+                                @error('date_limite')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             </div>
                             <div class="col-md-12">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror"" id="exampleFormControlTextarea1" rows="3" name="description">{{ old('description') }}</textarea>
+                                @error('description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             </div>   
                             <div class="responsive-flex">
                             <div class="col-md-2">
                                 <label for="exampleFormControlTextarea1" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="inputAddress2" placeholder="affiche " name="image">
+                                <input type="file" class="form-control @error('image') is-invalid @enderror"" id="inputAddress2" placeholder="affiche " name="image" value="{{ old('image') }}">
+                                @error('image')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             </div>
 
                             <div class="col-md-2">
