@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Evennement extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'nom', 'description', 'date', 'lieu', 'image', 'date_limite', 'nombre_de_place', 'duree', 'association_id'
     ];
@@ -20,6 +20,6 @@ class Evennement extends Model
 
     public function reservations()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Reservation::class, 'evenement_id');
     }
 }

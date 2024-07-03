@@ -17,8 +17,8 @@
         </div>
         <nav class="text-dashbord">
             <ul >
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Association</a></li>
+                <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('associations.index') }}">Association</a></li>
                 <li><a href="#">Evénements</a></li>
                 <li><a href="{{ route('admin.users.index') }}">Participants</a></li>
                 <li><a href="#">Role/permission</a></li>
@@ -67,7 +67,7 @@
              </div>
             </div>
            </header>
-           
+
     @yield('content')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

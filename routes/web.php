@@ -21,7 +21,7 @@ Route::get('user-deconnect', function(){
 
 Route::get('/admin', function () {
     return view('admins.accueil');
-});
+})->name('admin.dashboard');
 // listes des inscrits dans le platforme
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 //les controller pour les crud avenements avec les ressources
@@ -72,6 +72,11 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['a
 
 // Routes pour les événements
 Route::resource('evennements', EvennementController::class);
+
+// Route pour décliner la reservation d'un participant
+// Route::patch('/reservations/{id}/decline', [ReservationController::class, 'decline'])->name('reservations.decline');
+Route::delete('/reservations/{id}/decline', [ReservationController::class, 'destroy'])->name('reservations.decline');
+
 
 // Route pour les détails d'un événement
 Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->name('evennement.detail');

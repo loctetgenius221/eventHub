@@ -6,7 +6,10 @@ use App\Models\User;
 use App\Models\Evennement;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Mail\ReservationDeclined;
+use App\Mail\ReservationValidated;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -56,11 +59,34 @@ class ReservationController extends Controller
         ]);
          // Enregistrez la reservation dans la base de données
         $reservation->save();
+
         Auth::logout();
         return redirect(route('home'))->with('success', 'réservation soumise avec succès');
 
     }
 
+    public function destroy($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $user = $reservation->user;
+
+        $reservation->delete();
+
+        Mail::to($user->email)->send(new ReservationDeclined($reservation));
+
+        return redirect()->back()->with('success', 'L\'inscription a été déclinée et l\'utilisateur a été notifié.');
+    }
+
+    // public function decline($id)
+    // {
+    //     $reservation = Reservation::findOrFail($id);
+    //     $reservation->statut = 'refuser';
+    //     $reservation->save();
+
+    //     Mail::to($reservation->user->email)->send(new ReservationDeclined($reservation));
+
+    //     return redirect()->back()->with('success', 'L\'inscription a été déclinée et l\'utilisateur a été notifié.');
+    // }
 
     /**
      * Display the specified resource.
@@ -89,8 +115,8 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reservation $reservation)
-    {
-        //
-    }
+    // public function destroy(Reservation $reservation)
+    // {
+    //     //
+    // }
 }
