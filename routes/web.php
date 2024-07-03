@@ -13,12 +13,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/admin-detail', function () {
+    return view('admins.detail-association');
+});
 
 Route::get('/admin', function () {
     return view('admins.accueil');
 });
-// listes des inscrits dans le platforme
+// listes des inscrits dans le platforme  interface admin
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 //les controller pour les crud avenements avec les ressources
 Route::resources([

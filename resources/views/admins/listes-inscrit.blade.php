@@ -26,14 +26,25 @@
                             <td>{{ $user->phone}}</td>
                             <td>{{ $user->address}}</td>
                             <td>{{ $user->email}}</td>
-                            <td><select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <td>
+                              <select name="id" id="id" class="form-select"  aria-label="Default select example"  required>
+                                <option value="">Changer le rôle</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
                               </select>
                             </td>
-                            <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                            <td>
+                              {{-- <button class="btn btn-danger btn-sm">Supprimer</button> --}}
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;"
+                              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette utilisateur?');">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-danger btn-sm">
+                                Supprimer
+                              </button>
+                          </form>
+                        </td>
                           </tr>
                           <tr>
                             @endforeach

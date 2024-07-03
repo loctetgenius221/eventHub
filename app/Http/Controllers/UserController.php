@@ -12,4 +12,10 @@ class UserController extends Controller
         $users = User::all();
         return view('admins.listes-inscrit', compact('users'));
     }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('success', 'Utilisateur supprimé avec succès.');
+    }
 }

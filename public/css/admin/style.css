@@ -393,7 +393,8 @@ box-shadow: none;
     .col-12,
     .col-4,
     .col-md-2,
-    .col-2 {
+    .col-2
+    .col-6 {
     flex: 0 0 100%;
     max-width: 100%;
 }
@@ -439,7 +440,7 @@ font-size: 16px;
     .col-md-4,
     .col-md-12,
     .col-12,
-    .col-4,
+    .col-6,
     .col-md-2,
     .col-2 {
     flex: 0 0 100%;

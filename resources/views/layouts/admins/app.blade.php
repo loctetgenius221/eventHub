@@ -42,12 +42,12 @@
                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                    </div>
                    <div class="offcanvas-body">
-                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                       <li><a href="#" class="text-gray-800">Dashboard</a></li>
-                       <li><a href="#" class="text-gray-800">Association</a></li>
-                       <li><a href="#" class="text-gray-800">Evénements</a></li>
-                       <li><a href="{{ route('admin.users.index') }}"  class="text-gray-800">Participants</a></li>
-                       <li><a href="#" class="text-gray-800">Role/permission</a></li>
+                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 text-decoration-color: #fda4af;">
+                       <li><a href="#" class="">Dashboard</a></li>
+                       <li><a href="#" class="">Association</a></li>
+                       <li><a href="#" class="">Evénements</a></li>
+                       <li><a href="{{ route('admin.users.index') }}"  class="">Participants</a></li>
+                       <li><a href="#" class="">Role/permission</a></li>
                      </ul>
                    </div>
                  </div>
