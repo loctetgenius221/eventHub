@@ -10,11 +10,11 @@
             padding: 1rem;
             border-radius: 8px;
             background-color: #f8f9fa;
-            margin-top: 20px;
+            margin-top: 7vh;
             width: 160vh;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom:3vh
+            margin-bottom:7vh
         }
 
         .search-header {
@@ -22,6 +22,9 @@
             font-weight: bold;
             margin-bottom: 8vh;
             color:#FC5C65
+        }
+        a{
+            text-decoration:none
         }
 
         .search-input {
@@ -92,24 +95,18 @@
         }
 
         .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            justify-items: center;
-            padding: 1rem;
-        }
+    display: flex;
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne suivante */
+    gap: 1rem; /* Espace entre les cartes */
+    justify-content: center; /* Aligne les cartes au centre */
+}
 
-        .card {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 20rem;
-            border-radius: 1rem;
-            background-color: #FC5C65;
-            color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 1rem;
-        }
+.card {
+    flex: 1 1 30%; /* Permet aux cartes de s'ajuster à la taille de l'écran */
+    max-width: 24%; /* Limite la largeur maximale des cartes pour qu'il y en ait 3 par ligne */
+    margin: 1rem; /* Espace autour des cartes */
+}
+
         .card-image {
             height: 10rem;
             border-top-left-radius: 1rem;
@@ -166,6 +163,28 @@
             opacity: 0.5;
             box-shadow: none;
         }
+        footer {
+            background-color: #FC5C65;
+            padding: 2vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        footer .footer-section {
+            margin: 1vh;
+        }
+
+        footer .footer-section p {
+            margin: 0;
+            color: white;
+        }
+
+        footer .footer-section img {
+            height: 60px;
+        }
+
     </style>
 </head>
 <body>
@@ -213,10 +232,22 @@
                     </p>
                 </div>
                 <div class="card-actions">
-                    <a href="evennement/detail/{{ $evennement->id }}"type="button" class="card-button">Voir plus</a>
+                <a href="{{ route('evennement.detail', $evennement->id) }}" type="button" class="card-button">Voir plus</a>
                 </div>
             </div>
             @endforeach
         </div>
+        <footer>
+        <div class="footer-section">
+            <img src="{{ asset('img/logo.png') }}" width="auto" height="60">
+        </div>
+        <div class="footer-section">
+        <p>Contacter-nous: <br> Email: contact@example.com <br> Téléphone: +221 33 200 10 10</p>
+        </div>
+        <div class="footer-section">
+            <p>Suivez-nous:</p>
+            <p>Facebook | Twitter | Instagram</p>
+        </div>
+    </footer>
 </body>
 </html>

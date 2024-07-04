@@ -17,7 +17,7 @@
             margin-bottom: 2vh;
         }
 
-        .btn1 button {
+        .btn1  {
             background-color: #FC5C65;
             color: white;
             border: none;
@@ -25,7 +25,7 @@
             border-radius: 1vh;
         }
 
-        .btn2 button {
+        .btn2  {
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
@@ -43,7 +43,7 @@
         }
 
         header {
-            margin-top: 3vh;
+            margin-top: 4vh;
             margin-bottom: 2vh;
         }
 
@@ -54,6 +54,10 @@
             padding: 1.5vh;
             border-radius: 1vh;
         }
+       a{
+        text-decoration:none;
+        
+       }
 
         h1 {
             font-size: 18vh;
@@ -91,8 +95,8 @@
         }
 
         .btn4 button {
-            background-color: white;
-            color: #FC5C65;
+            background-color: #FC5C65;
+            color: white;
             border: 0.2vh solid #FC5C65;
             padding: 1.5vh 2vh;
             border-radius: 1vh;
@@ -161,9 +165,9 @@
             flex-direction: column;
             width: 100%;
             max-width: 20rem;
-            border-radius: 1rem;
-            background-color: #FC5C65;
-            color: white;
+            background-color: white;
+            color: #FC5C65;
+            border: 0.2vh solid #FC5C65;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin: 1rem;
         }
@@ -198,9 +202,11 @@
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
-            padding: 1.5vh 2vh;
+            padding: 0.5vh ;
+            padding-left:1.5vh;
+            padding-right:1.5vh;
             border-radius: 1vh;
-            margin-bottom: 5vh;
+            margin-bottom: 1vh;
             cursor: pointer;
         }
 
@@ -308,12 +314,24 @@
 
 <body>
 
-    <header>
+<header>
         <nav>
             <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
             <div class="group-btn">
- <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
-                <a href="#" class="btn2"><button>S'inscrire</button></a>
+                
+                   <a href="{{ route('login') }}"><button class="btn1 " type="button"  aria-expanded="false">
+                        Se connecter
+                    </button></a> 
+                
+                    <button class="btn2 btn dropdown-toggle" type="button" id="dropdownMenuButton2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        S'inscrire
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item" href="{{ route('register') }}">Participants</a></li>
+                        <li><a class="dropdown-item" href="">Associations</a></li>
+                    </ul>
+                
             </div>
         </nav>
     </header>
@@ -455,7 +473,7 @@
             <img src="{{ asset('img/logo.png') }}" width="auto" height="60">
         </div>
         <div class="footer-section">
-            <p>Contacter-nous: <br> Email: contact@example.com <br> Phone: +123 456 7890</p>
+            <p>Contacter-nous: <br> Email: contact@example.com <br> Téléphone: +221 33 200 10 10</p>
         </div>
         <div class="footer-section">
             <p>Suivez-nous:</p>
