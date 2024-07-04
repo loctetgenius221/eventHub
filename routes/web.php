@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
@@ -75,7 +76,6 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['a
 Route::resource('evennements', EvennementController::class);
 
 // Route pour décliner la reservation d'un participant
-// Route::patch('/reservations/{id}/decline', [ReservationController::class, 'decline'])->name('reservations.decline');
 Route::delete('/reservations/{id}/decline', [ReservationController::class, 'destroy'])->name('reservations.decline');
 
 

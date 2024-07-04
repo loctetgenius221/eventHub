@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
