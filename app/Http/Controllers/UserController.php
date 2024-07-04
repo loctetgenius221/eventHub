@@ -17,6 +17,7 @@ class UserController extends Controller
         return view('admins.listes-inscrit', compact('users','roles'));
     }
 
+
     public function destroy(User $user)
     {
         $user->delete();

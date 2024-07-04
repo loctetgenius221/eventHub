@@ -32,16 +32,13 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
 
         if ($user->hasRole('admin')) {
-            return redirect()->intended(route('associations.index'));
+            return redirect()->intended(route('admin.dashboard'));
         } elseif ($user->hasRole('association')) {
             return redirect()->intended(route('evennements.index'));
         } elseif ($user->hasRole('participant')) {
-            // ! ici pour la redirection rediriger vers le formulaire d'inscription à un évennement
             return redirect()->intended(url('reservations'));
-       
-        }
+        } 
 
-        // return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**

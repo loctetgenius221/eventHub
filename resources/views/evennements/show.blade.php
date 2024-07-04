@@ -31,41 +31,44 @@
                     </div>
                 </div>
             </div>
-    
-    <div class="liste-inscrits bg-blend-multiply mt-6 event-card">
-        <h2>La liste des inscris à cet évennement</h2>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Téléphone</th>
-                <th scope="col">Email</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>766149938</td>
-                <td>Mark@gmail.com</td>
-                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>766149938</td>
-                <td>jacob@gmail.com</td>
-                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
-              </tr>
-            </tbody>
-          </table>
+
+
+            <div class="liste-inscrits bg-blend-multiply mt-6 event-card">
+                <h2>La liste des inscrits à cet évennement</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Téléphone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($evennement->reservations as $reservation)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $reservation->user->name }}</td>
+                            <td>{{ $reservation->user->address }}</td>
+                            <td>{{ $reservation->user->phone }}</td>
+                            <td>{{ $reservation->user->email }}</td>
+                            <td>
+                                <form action="{{ route('reservations.decline', $reservation->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Décliner</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <a href="{{ route('export.participants', ['evenement_id' => $reservation->evennement->id]) }}" class="btn btn-primary">Exporter Participants</a>
+            </div>
+
     </div>
-</div>
-   
+
 
 @endsection

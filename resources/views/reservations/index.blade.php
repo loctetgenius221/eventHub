@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de réservation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/participant/inscription.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="form-section">
-            <h1>Formulaire de réservation à l’événement</h1>
+            <h1 class="text-lg"><a href="{{url('/') }}"><i class="fa-solid fa-arrow-right fa-flip-horizontal" style="color: #f66151;margin-right:20px;"></i></a>Formulaire de réservation à l’événement</h1>
             <form action="{{ route('reservations.store') }}" method="POST">
                 @csrf
                 @if(session('success'))
