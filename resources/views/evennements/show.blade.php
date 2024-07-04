@@ -65,6 +65,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <a href="{{ route('export.participants', ['evenement_id' => $reservation->evennement->id]) }}" class="btn btn-primary">Exporter Participants</a>
             </div>
 
     </div>

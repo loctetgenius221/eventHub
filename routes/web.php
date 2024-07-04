@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
@@ -85,6 +86,10 @@ Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->n
 Route::resource('reservations', ReservationController::class)->except(['create', 'store']);  // Exclure 'create' et 'store' car ils sont traités dans les routes spécifiques
 Route::get('/reservations/create/{id}', [ReservationController::class, 'create'])->name('reservations.create')->middleware('auth');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+
+// Route concernant l'exportation de la liste des participant
+Route::get('/export/participants/{evenement_id}', [PdfController::class, 'exportParticipants'])->name('export.participants');
+
 
 // Route pour le formulaire utilisateur
 Route::get('/formulaire', [UserController::class, 'register']);
