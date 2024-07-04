@@ -22,7 +22,7 @@
         <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="" class="event-image">
             <div class="event-info">
                 <h1>{{$evennement->nom}}</h1>
-                <p>{{$evennement->duree}}</p>
+                <p>{{$evennement->duree}}h</p>
                 <p>{{$evennement->lieu}}</p>
                 <p>Organisé par simplon </p>
                 <div class="event-info-bottom">

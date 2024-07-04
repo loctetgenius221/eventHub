@@ -378,6 +378,110 @@ box-shadow: none;
 .ninea-button:hover {
     background-color: #e14e4e;
 }
+/* css de l'autres sibar */
+.mt-auto {
+    margin-top: auto;
+}
+
+.nav-link {
+    font-size: 18px;
+    color: #FC5C65; /* Rose */
+}
+
+.nav-link.active {
+    background-color: #FC5C65; /* Rose */
+    color: white;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    background-color: #FC5C65; /* Rose */
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.nav-link.logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    width: auto;
+    height: 60px;
+}
+
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.card {
+    background-color: #ffffff; /* Blanc */
+    border: 1px solid #e0e0e0; /* Bordure grise */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #FC5C65; /* Rose */
+    color: white;
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0; /* Bordure grise */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* .btn{
+    background-color: white;
+    color: #FC5C65;
+    border:none;
+} */
+.btn:active{
+   background-color:#FC5C65;
+   border:none
+}
+
+.btn:hover {
+    background-color: #e54b56; /* Rose plus foncé */
+    color:white;
+}
+
+.btn-modify {
+    background-color: #FC5C65;
+    color: white;
+    border: none;
+    padding: 1.5vh;
+    border-radius: 1vh;
+    text-decoration:none
+}
+a:hover{
+text-decoration:none;
+color:grey
+}
+
+.btn-delete {
+    background-color: white;
+    color: #FC5C65;
+    border: 0.2vh solid #FC5C65;
+    padding: 1.5vh 2vh;
+    border-radius: 1vh;
+    margin-left: 4vh;
+}
 /* les crans mobile */
 @media (max-width: 768px) {
     .table-respnsive{

@@ -15,14 +15,24 @@
         <div class="logo-container">
             <img  class="w-15"   src="{{ asset('img/logo.png') }}" width="300" height="60">
         </div>
-        <nav class="text-dashbord">
+        {{-- <nav class="text-dashbord">
             <ul >
                 <li><a href="{{ route('admin.accueil') }}">Dashboard</a></li>
                 <li><a href="{{ route('associations.index') }}">Association</a></li>
                 <li><a href="{{ route('admin.users.index') }}">Participants</a></li>
                 <li><a href="#">Role/permission</a></li>
             </ul>
-        </nav>
+        </nav> --}}
+        <nav class="nav flex-column w-100">
+          <a class="nav-link" href="{{ route('admin.accueil') }}">Dashboard</a>
+          <a class="nav-link" href="{{ route('associations.index') }}">Association</a>
+          <a class="nav-link" href="{{ route('admin.users.index') }}">Participants</a>
+          <a href="{{url('roles')}}"class="nav-link">Roles</a>
+          <a href="{{url('permissions')}}" class="nav-link">Permissions</a>
+      </nav>
+        <div class="mt-auto">
+          <a class="nav-link logout" href="#">Déconnexion</a>
+      </div>
     </div>
     <script src="https://cdn.tailwindcss.com"></script>
     <div class="main-content">

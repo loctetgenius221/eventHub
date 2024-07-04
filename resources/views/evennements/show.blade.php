@@ -32,7 +32,6 @@
                 </div>
             </div>
 
-
             <div class="liste-inscrits bg-blend-multiply mt-6 event-card">
                 <h2>La liste des inscrits à cet évennement</h2>
                 <table class="table">

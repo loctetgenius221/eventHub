@@ -14,6 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware -> alias ([
             'checkRole' => \App\Http\Middleware\CheckRole::class ,
+            'check.association.suspended' => \App\Http\Middleware\CheckAssociationSuspended::class,
+            'check.admin.dashbord' => \App\Http\Middleware\CheckDashbordAdmin::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

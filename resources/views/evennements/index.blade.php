@@ -93,6 +93,7 @@
             <p class="card-text">
                 {{ Str::limit($evennement->description , 60);}}
             </p>
+
           </div>
           <div class="card-actions">
             <a href="{{ route('evennements.show', $evennement->id) }}"><button type="button" class="card-button">Voire plus</button></a>

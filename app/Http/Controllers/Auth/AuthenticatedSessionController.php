@@ -38,8 +38,11 @@ class AuthenticatedSessionController extends Controller
         } elseif ($user->hasRole('participant')) {
             return redirect()->intended(url('reservations'));
         } 
-
+       
     }
+        
+
+    
 
     /**
      * Destroy an authenticated session.

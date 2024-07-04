@@ -21,16 +21,14 @@ Route::get('user-deconnect', function(){
 
 
 // les routes du dashbord admin 
-Route::get('/admin/accueil', [AdminController::class, 'accueil'])->name('admin.accueil');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
-Route::put('/users/{user}/update-role', [UserController::class, 'updateRole'])->name('users.updateRole');
+Route::middleware('auth','check.admin.dashbord')->group(function () {
+    Route::get('/admin/accueil', [AdminController::class, 'accueil'])->name('admin.accueil');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::put('/users/{user}/update-role', [UserController::class, 'updateRole'])->name('users.updateRole');
+});
 
-//les controller pour les crud avenements avec les ressources
-Route::resources([
-    'evennements' => EvennementController::class,
-    'associations' => AssociationController::class,
-]);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -43,14 +41,16 @@ Route::middleware('auth')->group(function () {
 });
 
 
-//les controller pour les crud associations /avenements /reservations avec les ressources
-Route::resources([
-    // 'associations' => AssociationController::class,
-    'evennements' => EvennementController::class,
-    'associations' => AssociationController::class,
+// les controller pour les crud associations /avenements /reservations avec les ressources
+Route::middleware('auth')->group(function () {
+    Route::resource('evennements', EvennementController::class);
+    Route::resource('associations', AssociationController::class);
+});
 
-    // 'reservations' => ReservationController::class,
-]);
+Route::post('evennements', [EvennementController::class, 'store'])
+    ->middleware(['auth', 'check.association.suspended'])
+    ->name('evennements.store');
+
 
 // dashboard admin gestion des associations
 Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
@@ -81,7 +81,8 @@ Route::patch('/profile', [ProfileController::class, 'update'])->middleware(['aut
 Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['auth', 'verified'])->name('profile.destroy');
 
 // Routes pour les événements
-Route::resource('evennements', EvennementController::class);
+Route::get('events/show', [EvennementController::class, 'showEvents'])->name('events.showEvents');
+
 
 // Route pour décliner la reservation d'un participant
 // Route::patch('/reservations/{id}/decline', [ReservationController::class, 'decline'])->name('reservations.decline');
