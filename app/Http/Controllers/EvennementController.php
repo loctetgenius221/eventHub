@@ -37,22 +37,22 @@ class EvennementController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {  
         $data = $request->all();
         // Valider les autres champs du formulaire
- $validatedData = $request->validate([
-    'nom' => 'required|max:255',
-    'date' => 'required|date',
-    'lieu' => 'required',
-    'duree' => 'required',
-    'nombre_de_place' => 'required|integer',
-    'date_limite' => 'required|date',
-    'description' => 'required',
-    'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-]);
+        $validatedData = $request->validate([
+            'nom' => 'required|max:255',
+            'date' => 'required|date',
+            'lieu' => 'required',
+            'duree' => 'required',
+            'nombre_de_place' => 'required|integer',
+            'date_limite' => 'required|date',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
         $image = null;
- 
+
         // Vérifier si un fichier image est uploadé
         if ($request->hasFile('image')) {
             // Stocker l'image dans le répertoire 'public/blog'
@@ -76,6 +76,8 @@ class EvennementController extends Controller
      */
     public function show(Evennement $evennement)
     {
+        $evennement->load('reservations.user');
+        return view('evennements.show', compact('evennement'));
         $reservations = Reservation::where('evenement_id', $evennement->id)->get();
         $users = User::all();
 
@@ -110,7 +112,7 @@ class EvennementController extends Controller
         ]);
 
         // $image = null;
- 
+
         // Vérifier si un fichier image est uploadé
         if ($request->hasFile('image')) {
             // Stocker l'image dans le répertoire 'public/blog'
