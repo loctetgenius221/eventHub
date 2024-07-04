@@ -96,8 +96,7 @@
             border: 0.2vh solid #FC5C65;
             padding: 1.5vh 2vh;
             border-radius: 1vh;
-            margin-left: 4vh;
-            margin-left: 10vh;
+            margin-left: 82vh;
             margin-bottom: 5vh
         }
 
@@ -224,33 +223,80 @@
             opacity: 0.5;
             box-shadow: none;
         }
+        @media only screen and (max-width: 1280px) {
+        h1{
+            font-size:15vh
+        }
+        .caisse1 img{
+            height:auto;
+            width:30vh
+        }
+        .container3 p{
+            font-size:1.8vh
+        }
+        h2{
+            margin-left:6vh
+        }
+        .btn4{
+            margin-left:57vh
+        }
+        }
 
+        @media (max-width: 896px) {
+            nav{
+                flex-direction:column;
+            }
+            .group-btn{
+                margin-left:15vh;
+                margin-top:2vh
+            }
+           .logo img{
+            height:auto;
+            width:10vh;
+            margin-left:5vh;
+           }
+           .btn1 button {
+            padding: 1vh;
+        }
 
-        @media (max-width: 768px) {
+          .btn2 button {
+            padding: 1vh 1vh;
+            margin-left: 2vh;
+        }
             h1 {
-                font-size: 10vh;
+                font-size: 5vh;
             }
+            .caisse1 img{
+            height:auto;
+            width:35vh
+        }
+        .caisse1 {
+            flex-direction:column;
+        }
+        .container3 {
+            flex-direction:column;
+            align-items:center
+        }
+        .container3 p{
+            width:50vh;
+        }
 
-            h2 {
-                font-size: 3vh;
-                margin-left: 3vh;
-            }
+         h2 {
+             font-size: 3vh;
+             margin-left: 3vh;
+        }
 
-            .carousel-item {
-                height: 50vh;
-            }
+         .carousel-item {
+             height: 30vh;
+         }
 
-            .custom-caption p, .custom-caption h1 {
-                font-size: 2vh;
-            }
+         .btn3 button, .btn4 button {
+            padding: 1vh;
+            font-size: 2vh;
+           }
 
-            .btn3 button, .btn4 button {
-                padding: 1vh;
-                font-size: 2vh;
-            }
-
-            footer {
-                flex-direction: column;
+        footer {
+             flex-direction: column;
                 align-items: center;
                 text-align: center;
             }
@@ -380,7 +426,7 @@
                         {{$evennement->lieu}}
                     </p>
                     <p class="card-text">
-                        {{$evennement->date}}
+                    {{ \Carbon\Carbon::parse($evennement->date)->translatedFormat('j F, Y') }}
                     </p>
                 </div>
                 <div class="card-actions">
@@ -389,7 +435,8 @@
             </div>
             @endforeach
         </div>
-        <a href="#" class="btn4"><button>Voir tous les événements</button></a>
+        <a href="{{ route('events.showEvents') }}" class="btn4"><button>Voir tous les événements</button></a>
+
       </div>
 
     </div>
@@ -408,10 +455,10 @@
             <img src="{{ asset('img/logo.png') }}" width="auto" height="60">
         </div>
         <div class="footer-section">
-            <p>Contact us: <br> Email: contact@example.com <br> Phone: +123 456 7890</p>
+            <p>Contacter-nous: <br> Email: contact@example.com <br> Phone: +123 456 7890</p>
         </div>
         <div class="footer-section">
-            <p>Follow us:</p>
+            <p>Suivez-nous:</p>
             <p>Facebook | Twitter | Instagram</p>
         </div>
     </footer>

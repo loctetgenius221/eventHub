@@ -66,9 +66,6 @@
           </div>
           <div class="card-content">
             <h5 class="card-title">{{$evennement->nom}}</h5>
-            <p class="card-text">
-                {{$evennement->description}}
-            </p>
           </div>
           <div class="card-actions">
             <a href="{{ route('evennements.show', $evennement->id) }}"><button type="button" class="card-button">Voire plus</button></a>

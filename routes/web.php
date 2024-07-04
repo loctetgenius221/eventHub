@@ -32,6 +32,8 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['a
 
 // Routes pour les événements
 Route::resource('evennements', EvennementController::class);
+Route::get('events/show', [EvennementController::class, 'showEvents'])->name('events.showEvents');
+
 
 // Route pour les détails d'un événement
 Route::get('evennement/detail/{id}', [EvennementController::class, 'detail'])->name('evennement.detail');

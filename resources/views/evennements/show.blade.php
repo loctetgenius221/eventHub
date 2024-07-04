@@ -37,31 +37,19 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Téléphone</th>
+                <th scope="col">Prénom et nom</th>
                 <th scope="col">Email</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>766149938</td>
-                <td>Mark@gmail.com</td>
-                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>766149938</td>
-                <td>jacob@gmail.com</td>
-                <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
-              </tr>
+            @foreach($reservations as $reservation)
+        <tr>
+            <td>{{ $reservation->user->name }}</td>
+            <td>{{ $reservation->user->email}}</td>
+            <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+        </tr>
+        @endforeach
             </tbody>
           </table>
     </div>

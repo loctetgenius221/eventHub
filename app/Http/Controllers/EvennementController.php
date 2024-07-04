@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Evennement;
 use Illuminate\Http\Request;
+use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class EvennementController extends Controller
@@ -74,7 +76,10 @@ class EvennementController extends Controller
      */
     public function show(Evennement $evennement)
     {
-        return view('evennements.show', compact('evennement'));
+        $reservations = Reservation::where('evenement_id', $evennement->id)->get();
+        $users = User::all();
+
+        return view('evennements.show', compact('evennement', 'reservations', 'users'));
     }
 
     /**
@@ -122,6 +127,11 @@ class EvennementController extends Controller
     $evennement->update($validatedData);
 
     return redirect('evennements')->with('success', 'Événement mis à jour avec succès.');
+    }
+    public function showEvents()
+    {
+        $evennements = Evennement::all();
+        return view('evennements.allevent', compact('evennements'));
     }
 
     /**

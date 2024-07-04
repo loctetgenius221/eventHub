@@ -38,6 +38,19 @@
             margin-top: 3vh;
             margin-bottom: 2vh;
         }
+        .contact h2{
+            color:#FC5C65
+        }
+        .description h2{
+            color:#FC5C65
+        }
+        .location h2{
+            color:#FC5C65
+        }
+        .event-info p{
+            font-size:2.5vh;
+            font-weight:600
+        }
     </style>
 </head>
 <body>
