@@ -74,7 +74,8 @@ class AssociationController extends Controller
     public function show(Association $association)
     {   
         $user = $association->user;
-        return view('admins.detail-association', compact('association','user'));
+        $evennements = $association->user->evennements;
+        return view('admins.detail-association', compact('association','user','evennements'));
     }
 
     /**

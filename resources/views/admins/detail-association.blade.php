@@ -3,7 +3,7 @@
 @section('content')
 
             <div class="form-container">
-                <h2 class="text-lg"><a href=""><i class="fa-solid fa-arrow-right fa-flip-horizontal" style="color: #f66151;margin-right:20px;"></i></a>Coordonnées </h2>
+                <h2 class="text-lg"><a href="{{ route('associations.index') }}"><i class="fa-solid fa-arrow-right fa-flip-horizontal" style="color: #f66151;margin-right:20px;"></i></a>Coordonnées </h2>
             
                 <div class="container px-4 mt-6 ">
   <div class="row gx-5 ">

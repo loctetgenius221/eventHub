@@ -37,9 +37,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('evennements.index'));
         } elseif ($user->hasRole('participant')) {
             // ! ici pour la redirection rediriger vers le formulaire d'inscription à un évennement
-            return redirect()->intended(route('inscription'));
-        } else {
-            return redirect()->intended(route('/'));
+            return redirect()->intended(url('reservations'));
+       
         }
 
         // return redirect()->intended(route('dashboard', absolute: false));

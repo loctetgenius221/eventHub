@@ -17,9 +17,8 @@
         </div>
         <nav class="text-dashbord">
             <ul >
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Association</a></li>
-                <li><a href="#">Evénements</a></li>
+                <li><a href="{{ route('admin.accueil') }}">Dashboard</a></li>
+                <li><a href="{{ route('associations.index') }}">Association</a></li>
                 <li><a href="{{ route('admin.users.index') }}">Participants</a></li>
                 <li><a href="#">Role/permission</a></li>
             </ul>
@@ -44,8 +43,8 @@
                    <div class="offcanvas-body">
                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 text-decoration-color: #fda4af;">
                        <li><a href="#" class="">Dashboard</a></li>
-                       <li><a href="#" class="">Association</a></li>
-                       <li><a href="#" class="">Evénements</a></li>
+                       <li><a href="{{ route('associations.index') }}" class="">Association</a></li>
+                       {{-- <li><a href="#" class="">Evénements</a></li> --}}
                        <li><a href="{{ route('admin.users.index') }}"  class="">Participants</a></li>
                        <li><a href="#" class="">Role/permission</a></li>
                      </ul>

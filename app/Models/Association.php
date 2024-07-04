@@ -19,6 +19,7 @@ class Association extends Model
         'ninea',
         'date_creation',
         'validated',
+
     ];
 
     public function user()
