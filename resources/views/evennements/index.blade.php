@@ -9,7 +9,7 @@
         <div class="profile-icon"></div>
     </header>
 
-<<<<<<< HEAD
+
     <div class="form-container">
         <h2>Ajouter un nouvel évènement</h2>
         <div class="container mt-5">

@@ -20,7 +20,7 @@ class EvennementController extends Controller
     }
 
     public function acceuil(){
-         $evennements = Evennement::take(3)->get();
+         $evennements = Evennement::take(6)->get();
 
          return view ('welcome',compact('evennements'));
     }
@@ -134,6 +134,11 @@ class EvennementController extends Controller
     {
         $evennements = Evennement::all();
         return view('evennements.allevent', compact('evennements'));
+    }
+
+    public function success(){
+        
+        return view('evennements.success');
     }
 
     /**

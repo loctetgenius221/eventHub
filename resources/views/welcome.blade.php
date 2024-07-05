@@ -153,24 +153,20 @@
         }
 
         .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            justify-items: center;
-            padding: 1rem;
-        }
+    display: flex;
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne suivante */
+    gap: 1rem; /* Espace entre les cartes */
+    justify-content: center; /* Aligne les cartes au centre */
+       }
 
         .card {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 20rem;
-            background-color: white;
-            color: #FC5C65;
-            border: 0.2vh solid #FC5C65;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 1rem;
-        }
+    flex: 1 1 30%; /* Permet aux cartes de s'ajuster à la taille de l'écran */
+    max-width: 24%; /* Limite la largeur maximale des cartes pour qu'il y en ait 3 par ligne */
+    margin: 1rem; /* Espace autour des cartes */
+    background-color: transparent;
+    border:none
+     }
+
         .card-image {
             height: 10rem;
             border-top-left-radius: 1rem;
@@ -202,11 +198,9 @@
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
-            padding: 0.5vh ;
-            padding-left:1.5vh;
-            padding-right:1.5vh;
+            padding: 1.5vh 2vh;
             border-radius: 1vh;
-            margin-bottom: 1vh;
+            margin-bottom: 5vh;
             cursor: pointer;
         }
 
@@ -316,7 +310,7 @@
 
 <header>
         <nav>
-            <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
+            <div class="logo"> <a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></a> </div>
             <div class="group-btn">
                 
                    <a href="{{ route('login') }}"><button class="btn1 " type="button"  aria-expanded="false">
@@ -329,7 +323,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         <li><a class="dropdown-item" href="{{ route('register') }}">Participants</a></li>
-                        <li><a class="dropdown-item" href="">Associations</a></li>
+                        <li><a class="dropdown-item" href="/formulaire">Associations</a></li>
                     </ul>
                 
             </div>
@@ -434,10 +428,10 @@
         <h2>Événements récents</h2>
         <div class="cards-container">
             @foreach($evennements as $evennement)
-            <div class="card">
-            <div class="card-image">
-            <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="{{ $evennement->nom }}" style="object-fit: cover; width: 100%; height: 100%;">
-          </div>
+         <div class="card">
+             <div class="card-image">
+              <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="{{ $evennement->nom }}" style="object-fit: cover; width: 100%; height: 100%;">
+             </div>
                 <div class="card-content">
                     <h5 class="card-title">{{$evennement->nom}}</h5>
                     <p class="card-text">
@@ -448,7 +442,7 @@
                     </p>
                 </div>
                 <div class="card-actions">
-                    <a href="evennement/detail/{{ $evennement->id }}"type="button" class="card-button">Voir plus</a>
+                <a href="evennement/detail/{{ $evennement->id }}"type="button" class="card-button">Voir plus</a>
                 </div>
             </div>
             @endforeach
