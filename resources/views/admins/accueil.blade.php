@@ -5,7 +5,7 @@
   <div class="row gx-5 ">
     <div class="col-6 mt-6 ">
      <div class="p-3 border bg-light flex space-x-4 bg-white rounded-xl">
-      <div class="profile-icon space-x-1.5"></div>
+      <div class="profile-icon space-x-1.5"><i class="fa-solid fa-users ml-2 mt-2"></i></div>
       <div><h2>Nombre d’utilisateurs</h2><br>
         <h1 class="text-2xl font-bold">{{ $userCount }}</h1>
      </div>

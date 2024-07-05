@@ -1,14 +1,6 @@
 @extends('layouts/association.side-bar')
 
 @section('content')
-
-
-    <div class="main-content">
-        <header class="header">
-            <button class="menu-toggle d-md-none"><i class="fas fa-bars"></i></button>
-            <div class="welcome-message">SIMPLON</div>
-            <div class="profile-icon"></div>
-        </header>
             <div class="form-container">
                 <h2>Ajouter un nouvel évènement</h2>
                 <div class="container mt-5" >

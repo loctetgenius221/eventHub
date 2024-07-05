@@ -16,7 +16,7 @@
         </div> 
             <div class="logo-association rounded-xl m-2 rounded-lg">
                 <ul>
-                    <li class="text-xl">Senebach</li>
+                    <li class="text-xl">Nom Association</li>
                     <li class="mt-6"><i class="fa-solid fa-calendar-days mx-2" style="color: #f66151;"></i>{{$association->date_creation}}</li>
                     
                 </ul>

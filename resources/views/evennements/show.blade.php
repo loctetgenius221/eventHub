@@ -1,12 +1,6 @@
 @extends('layouts/association.side-bar')
 
 @section('content')
-    <div class="main-content">
-        <header class="header">
-            <button class="menu-toggle d-md-none"><i class="fas fa-bars"></i></button>
-            <div class="welcome-message">SIMPLON</div>
-            <div class="profile-icon"></div>
-        </header>
             <div class="form-container-detail">
                 <div class="container mt-5" >
                   <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="{{ $evennement->nom }}" style="width: 100%" >

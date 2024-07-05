@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>EventHub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
 </head>
 <body>
@@ -15,14 +16,6 @@
         <div class="logo-container">
             <img  class="w-15"   src="{{ asset('img/logo.png') }}" width="300" height="60">
         </div>
-        {{-- <nav class="text-dashbord">
-            <ul >
-                <li><a href="{{ route('admin.accueil') }}">Dashboard</a></li>
-                <li><a href="{{ route('associations.index') }}">Association</a></li>
-                <li><a href="{{ route('admin.users.index') }}">Participants</a></li>
-                <li><a href="#">Role/permission</a></li>
-            </ul>
-        </nav> --}}
         <nav class="nav flex-column w-100">
           <a class="nav-link" href="{{ route('admin.accueil') }}">Dashboard</a>
           <a class="nav-link" href="{{ route('associations.index') }}">Association</a>
@@ -65,16 +58,26 @@
             </div>
             <div class="welcome-message text-center"><h2 class="text-gray-800">Dashbord</h2></div>
             <div class="flex flex-row items-center space-x-4 ">
-             <div class="relative">
-               <input type="text" class="recherche rounded-xl text-center border border-sky-500 pl-8" placeholder="Recherche">
-               <i class="fa-solid fa-magnifying-glass absolute left-2 top-1/2 transform -translate-y-1/2" style="color: #c0bfbc;"></i>
-             </div>
-             <div class="profile-icon space-x-1.5"></div>
-             <div class="nom-admin flex flex-col text-center">
-               <p class="text-gray-800">Serigne</p>
-               <p class="text-gray-800">Serigne</p>
-             </div>
-            </div>
+            
+             <div class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out">
+                  <div class="mr-3">{{ Auth::user()->name }}</div>
+                  <div>
+                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                  </div>
+              </button>
+              <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
+                  <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                  <form method="POST" action="{{ route('logout') }}">
+                      @csrf
+                      <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          Log Out
+                      </button>
+                  </form>
+              </div>
+          </div>
            </header>
 
     @yield('content')

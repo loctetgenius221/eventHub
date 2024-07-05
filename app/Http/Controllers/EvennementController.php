@@ -98,43 +98,40 @@ class EvennementController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Evennement $evennement)
-    {
+{
+    $validatedData = $request->validate([
+        'nom' => 'required|max:255',
+        'date' => 'required|date',
+        'lieu' => 'required',
+        'duree' => 'required',
+        'nombre_de_place' => 'required|integer',
+        'date_limite' => 'required|date',
+        'description' => 'required',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Changed to nullable
+    ]);
 
-        $validatedData = $request->validate([
-            'nom' => 'required|max:255',
-            'date' => 'required|date',
-            'lieu' => 'required',
-            'duree' => 'required',
-            'nombre_de_place' => 'required|integer',
-            'date_limite' => 'required|date',
-            'description' => 'required',
-            'image' => 'required',
-        ]);
+    // Vérifier si un fichier image est uploadé
+    if ($request->hasFile('image')) {
+        // Stocker l'image dans le répertoire 'public/blog'
+        $chemin_image = $request->file('image')->store('public/blog');
 
-        // $image = null;
-
-        // Vérifier si un fichier image est uploadé
-        if ($request->hasFile('image')) {
-            // Stocker l'image dans le répertoire 'public/blog'
-            $chemin_image = $request->file('image')->store('public/blog');
-
-            // Vérifier si le chemin de l'image est bien généré
-            if (!$chemin_image) {
-                return redirect()->back()->with('error', 'Erreur lors du téléchargement de l\'image.');
-            }
-
-            // Récupérer le nom du fichier de l'image
-            $validatedData['image'] = basename($chemin_image);
+        // Vérifier si le chemin de l'image est bien généré
+        if (!$chemin_image) {
+            return redirect()->back()->with('error', 'Erreur lors du téléchargement de l\'image.');
         }
+
+        // Récupérer le nom du fichier de l'image
+        $validatedData['image'] = basename($chemin_image);
+    } else {
+        // Utiliser l'ancienne image si aucune nouvelle image n'est téléchargée
+        $validatedData['image'] = $request->input('current_image');
+    }
+
     $evennement->update($validatedData);
 
     return redirect('evennements')->with('success', 'Événement mis à jour avec succès.');
-    }
-    public function showEvents()
-    {
-        $evennements = Evennement::all();
-        return view('evennements.allevent', compact('evennements'));
-    }
+}
+
 
     /**
      * Remove the specified resource from storage.

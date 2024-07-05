@@ -22,7 +22,8 @@ class AdminController extends Controller
         // Comptez le nombre d'associations suspendues
         $suspendedAssociationCount = Association::where('suspended', true)->count();
         $associations = Association::with('user')->get();
-        $user=User::all();
+
+        $user = $association->user;
         // Passez la variable à la vue
         return view('admins.accueil', compact('userCount', 'associationCount','evennementCount', 'suspendedAssociationCount','associations','user'));
     }
