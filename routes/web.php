@@ -26,6 +26,7 @@ Route::middleware('auth','check.admin.dashbord')->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::put('/users/{user}/update-role', [UserController::class, 'updateRole'])->name('users.updateRole');
+    Route::resource('associations', AssociationController::class);
 });
 
 
@@ -44,7 +45,6 @@ Route::middleware('auth')->group(function () {
 // les controller pour les crud associations /avenements /reservations avec les ressources
 Route::middleware('auth')->group(function () {
     Route::resource('evennements', EvennementController::class);
-    Route::resource('associations', AssociationController::class);
 });
 
 Route::post('evennements', [EvennementController::class, 'store'])
@@ -82,6 +82,7 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['a
 
 // Routes pour les événements
 Route::get('events/show', [EvennementController::class, 'showEvents'])->name('events.showEvents');
+Route::get('inscription/reussie', [EvennementController::class, 'success'])->name('inscription.reussie');
 
 
 // Route pour décliner la reservation d'un participant

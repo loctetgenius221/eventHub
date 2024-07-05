@@ -17,7 +17,7 @@
             margin-bottom: 2vh;
         }
 
-        .btn1 button {
+        .btn1  {
             background-color: #FC5C65;
             color: white;
             border: none;
@@ -25,7 +25,7 @@
             border-radius: 1vh;
         }
 
-        .btn2 button {
+        .btn2  {
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
@@ -43,7 +43,7 @@
         }
 
         header {
-            margin-top: 3vh;
+            margin-top: 4vh;
             margin-bottom: 2vh;
         }
 
@@ -54,6 +54,10 @@
             padding: 1.5vh;
             border-radius: 1vh;
         }
+       a{
+        text-decoration:none;
+        
+       }
 
         h1 {
             font-size: 18vh;
@@ -91,8 +95,8 @@
         }
 
         .btn4 button {
-            background-color: white;
-            color: #FC5C65;
+            background-color: #FC5C65;
+            color: white;
             border: 0.2vh solid #FC5C65;
             padding: 1.5vh 2vh;
             border-radius: 1vh;
@@ -149,24 +153,20 @@
         }
 
         .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            justify-items: center;
-            padding: 1rem;
-        }
+    display: flex;
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne suivante */
+    gap: 1rem; /* Espace entre les cartes */
+    justify-content: center; /* Aligne les cartes au centre */
+       }
 
         .card {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 20rem;
-            border-radius: 1rem;
-            background-color: #FC5C65;
-            color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 1rem;
-        }
+    flex: 1 1 30%; /* Permet aux cartes de s'ajuster à la taille de l'écran */
+    max-width: 24%; /* Limite la largeur maximale des cartes pour qu'il y en ait 3 par ligne */
+    margin: 1rem; /* Espace autour des cartes */
+    background-color: transparent;
+    border:none
+     }
+
         .card-image {
             height: 10rem;
             border-top-left-radius: 1rem;
@@ -308,12 +308,24 @@
 
 <body>
 
-    <header>
+<header>
         <nav>
-            <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
+            <div class="logo"> <a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></a> </div>
             <div class="group-btn">
- <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
-                <a href="#" class="btn2"><button>S'inscrire</button></a>
+                
+                   <a href="{{ route('login') }}"><button class="btn1 " type="button"  aria-expanded="false">
+                        Se connecter
+                    </button></a> 
+                
+                    <button class="btn2 btn dropdown-toggle" type="button" id="dropdownMenuButton2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        S'inscrire
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item" href="{{ route('register') }}">Participants</a></li>
+                        <li><a class="dropdown-item" href="/formulaire">Associations</a></li>
+                    </ul>
+                
             </div>
         </nav>
     </header>
@@ -416,10 +428,10 @@
         <h2>Événements récents</h2>
         <div class="cards-container">
             @foreach($evennements as $evennement)
-            <div class="card">
-            <div class="card-image">
-            <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="{{ $evennement->nom }}" style="object-fit: cover; width: 100%; height: 100%;">
-          </div>
+         <div class="card">
+             <div class="card-image">
+              <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="{{ $evennement->nom }}" style="object-fit: cover; width: 100%; height: 100%;">
+             </div>
                 <div class="card-content">
                     <h5 class="card-title">{{$evennement->nom}}</h5>
                     <p class="card-text">
@@ -430,7 +442,7 @@
                     </p>
                 </div>
                 <div class="card-actions">
-                    <a href="evennement/detail/{{ $evennement->id }}"type="button" class="card-button">Voir plus</a>
+                <a href="evennement/detail/{{ $evennement->id }}"type="button" class="card-button">Voir plus</a>
                 </div>
             </div>
             @endforeach
@@ -455,7 +467,7 @@
             <img src="{{ asset('img/logo.png') }}" width="auto" height="60">
         </div>
         <div class="footer-section">
-            <p>Contacter-nous: <br> Email: contact@example.com <br> Phone: +123 456 7890</p>
+            <p>Contacter-nous: <br> Email: contact@example.com <br> Téléphone: +221 33 200 10 10</p>
         </div>
         <div class="footer-section">
             <p>Suivez-nous:</p>

@@ -23,9 +23,13 @@
           <a href="{{url('roles')}}"class="nav-link">Roles</a>
           <a href="{{url('permissions')}}" class="nav-link">Permissions</a>
       </nav>
-        <div class="mt-auto">
-          <a class="nav-link logout" href="#">Déconnexion</a>
-      </div>
+      <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    @method('POST')
+    <div class="mt-auto">
+        <button type="submit" class="nav-link logout">Déconnexion</button>
+    </div>
+</form>
     </div>
     <script src="https://cdn.tailwindcss.com"></script>
     <div class="main-content">

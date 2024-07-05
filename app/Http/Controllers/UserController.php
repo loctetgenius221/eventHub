@@ -60,6 +60,7 @@ class UserController extends Controller
                     'association_name' => $request->input('association_name'),
                     'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
                 ]);
+                $user->assignRole('association');
             });
 
             return response()->json(['message' => 'Transaction réussie !'], 201);

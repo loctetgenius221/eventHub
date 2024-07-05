@@ -38,6 +38,12 @@
                 <button type="submit" class="submit-btn">Je m'inscris à l'événement</button>
             </form>
         </div>
-        <div>
+        <div class="info-section">
+            <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="Soirée Éblouissante" style=" width:auto; height:40vh">
+            <div class="event-details">
+                <h2>{{ $evennement->nom }}</h2> 
+            </div>
+        </div>
+    <div>
     </body>
         </html>

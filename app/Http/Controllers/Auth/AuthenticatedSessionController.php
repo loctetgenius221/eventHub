@@ -37,7 +37,9 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('evennements.index'));
         } elseif ($user->hasRole('participant')) {
             return redirect()->intended(url('reservations'));
-        } 
+        } else {
+            return redirect(route('home'));
+        }
        
     }
         
