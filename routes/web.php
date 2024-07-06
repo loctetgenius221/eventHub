@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -86,7 +87,6 @@ Route::get('inscription/reussie', [EvennementController::class, 'success'])->nam
 
 
 // Route pour décliner la reservation d'un participant
-// Route::patch('/reservations/{id}/decline', [ReservationController::class, 'decline'])->name('reservations.decline');
 Route::delete('/reservations/{id}/decline', [ReservationController::class, 'destroy'])->name('reservations.decline');
 
 

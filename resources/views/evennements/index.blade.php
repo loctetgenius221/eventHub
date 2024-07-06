@@ -1,7 +1,6 @@
 @extends('layouts/association.side-bar')
 
 @section('content')
-<<<<<<< HEAD
             <div class="form-container">
                 <h2>Ajouter un nouvel évènement</h2>
                 <div class="container mt-5" >
@@ -16,7 +15,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="inputPassword4" class="form-label">Date</label>
-                                <input type="date" class="form-control @error('date') is-invalid @enderror"" id="inputPassword4" name="date " value="{{ old('date') }}">
+                                <input type="date" class="form-control @error('date') is-invalid @enderror"" id="inputPassword4" name="date" value="{{ old('date') }}">
                                 @error('date')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -64,55 +63,8 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             </div>
-=======
 
-<div class="main-content">
-    <header class="header">
-        <button class="menu-toggle d-md-none"><i class="fas fa-bars"></i></button>
-        <div class="welcome-message">SIMPLON</div>
-        <div class="profile-icon"></div>
-    </header>
 
->>>>>>> feature/fatoubintou
-
-    <div class="form-container">
-        <h2>Ajouter un nouvel évènement</h2>
-        <div class="container mt-5">
-            <form class="row g-3" action="{{route('evennements.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="col-md-4">
-                    <label for="inputEmail4" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Titre de l'évennemnt" name="nom">
-                </div>
-                <div class="col-md-4">
-                    <label for="inputPassword4" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="inputPassword4" name="date">
-                </div>
-                <div class="col-4">
-                    <label for="inputAddress" class="form-label">Lieu</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Lieu de l'évenement" name="lieu">
-                </div>
-                <div class="col-4">
-                    <label for="inputAddress2" class="form-label">Heure</label>
-                    <input type="time" class="form-control" id="inputAddress2" placeholder="durée de l'évennement" name="duree">
-                </div>
-                <div class="col-md-4">
-                    <label for="exampleFormControlTextarea1" class="form-label">Nombre de place</label>
-                    <input type="number" class="form-control" id="inputAddress2" placeholder="le nombre de place disponible" name="nombre_de_place">
-                </div>
-                <div class="col-md-4">
-                    <label for="exampleFormControlTextarea1" class="form-label">Date limite</label>
-                    <input type="date" class="form-control" id="inputAddress2" placeholder="date limite de l'évennement" name="date_limite">
-                </div>
-                <div class="col-md-12">
-                    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
-                </div>
-                <div class="responsive-flex">
-                    <div class="col-md-2">
-                        <label for="exampleFormControlTextarea1" class="form-label">Image</label>
-                        <input type="file" class="form-control" id="inputAddress2" placeholder="affiche " name="image">
-                    </div>
 
                     <div class="col-md-2">
                         <button type="submit" class="button">Ajouter</button>
