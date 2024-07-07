@@ -127,12 +127,11 @@
                 <img src="{{ asset('img/logo.png') }}" alt="Logo">
             </div>
             <nav class="nav flex-column w-100">
-            <a class="nav-link" href="#">Dashboard</a>
-                <a class="nav-link" href="#">Association</a>
-                <a class="nav-link" href="#">Événements</a>
-                <a class="nav-link" href="#">Participants</a>
-                <a href="{{url('roles')}}"class="nav-link">Roles</a>
-                <a href="{{url('permissions')}}" class="nav-link">Permissions</a>
+            <a class="nav-link" href="{{ route('admin.accueil') }}">Dashboard</a>
+          <a class="nav-link" href="{{ route('associations.index') }}">Association</a>
+          <a class="nav-link" href="{{ route('admin.users.index') }}">Participants</a>
+          <a href="{{url('roles')}}"class="nav-link">Roles</a>
+          <a href="{{url('permissions')}}" class="nav-link">Permissions</a>
             </nav>
             <div class="mt-auto">
                 <a class="nav-link logout" href="#">Déconnexion</a>

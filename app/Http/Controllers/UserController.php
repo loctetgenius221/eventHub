@@ -63,7 +63,7 @@ class UserController extends Controller
                 $user->assignRole('association');
             });
 
-            return response()->json(['message' => 'Transaction réussie !'], 201);
+            return redirect()->route('login')->with('success', 'Inscription Réussie. Veuillez-vous connecter.');
         } catch (Exception $e) {
             return response()->json(['message' => 'Échec de la transaction : ' . $e->getMessage()], 500);
         }

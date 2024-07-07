@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmation - Idée Enregistrée</title>
+    <title>Réservation enregistrée</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -56,8 +56,8 @@
     <div class="container">
         <div class="success-icon">&#10004;</div>
         <h1>Réservation enregistrée avec succès</h1>
-        <p>Votre réservation a été enregistrée et un email de confirmation a été envoyé. Merci pour votre contribution !</p>
-        <a href="{{url('/')}}" class="btn">Retour à la liste des idées</a>
+        <p>Votre réservation a été enregistrée et un email de confirmation a été envoyé.</p>
+        <a href="{{url('/')}}" class="btn">Retour à la liste des événements</a>
     </div>
 </body>
 </html>

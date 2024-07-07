@@ -28,7 +28,7 @@
                                     @enderror
                             </div>
                             <div class="col-4">
-                                <label for="inputAddress2" class="form-label">Durée</label>
+                                <label for="inputAddress2" class="form-label">Heures</label>
                                 <input type="time" class="form-control @error('duree') is-invalid @enderror"" id="inputAddress2" placeholder="durée de l'évennement" name="duree" value="{{ old('duree') }}">
                                 @error('duree')
                                 <div class="invalid-feedback">{{ $message }}</div>
