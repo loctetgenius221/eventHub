@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -20,12 +21,16 @@ Route::get('user-deconnect', function(){
 
 
 
-// les routes du dashbord admin 
+// les routes du dashbord admin
 Route::middleware('auth','check.admin.dashbord')->group(function () {
     Route::get('/admin/accueil', [AdminController::class, 'accueil'])->name('admin.accueil');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::put('/users/{user}/update-role', [UserController::class, 'updateRole'])->name('users.updateRole');
+    Route::resource('associations', AssociationController::class);
+    Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
+    Route::patch('association/valider/{association}', [AdminController::class, 'validateAssociation'])->name('associations.validate');
+    Route::post('/associations/{id}/toggle-suspension', [AssociationController::class, 'toggleSuspension'])->name('associations.toggle-suspension');
 });
 
 
@@ -44,7 +49,6 @@ Route::middleware('auth')->group(function () {
 // les controller pour les crud associations /avenements /reservations avec les ressources
 Route::middleware('auth')->group(function () {
     Route::resource('evennements', EvennementController::class);
-    Route::resource('associations', AssociationController::class);
 });
 
 Route::post('evennements', [EvennementController::class, 'store'])
@@ -53,9 +57,7 @@ Route::post('evennements', [EvennementController::class, 'store'])
 
 
 // dashboard admin gestion des associations
-Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
-Route::put('association/valider/{association}', [AssociationController::class, 'validateAssociation'])->name('associations.validate');
-Route::post('/associations/{id}/toggle-suspension', [AssociationController::class, 'toggleSuspension'])->name('associations.toggle-suspension');
+
 
 
 require __DIR__.'/auth.php';
@@ -64,6 +66,7 @@ Route::get('/', [EvennementController::class, 'acceuil'])->name('home');
 Route::get('user-deconnect', function(){
     Auth::logout();
 });
+Route::get('/evennements/search', [EvennementController::class, 'search'])->name('evennements.search');
 
 // Routes pour les permissions
 Route::resource('permissions', PermissionController::class);
@@ -82,10 +85,12 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['a
 
 // Routes pour les événements
 Route::get('events/show', [EvennementController::class, 'showEvents'])->name('events.showEvents');
+Route::get('inscription/reussie', [EvennementController::class, 'success'])->name('inscription.reussie');
+
+
 
 
 // Route pour décliner la reservation d'un participant
-// Route::patch('/reservations/{id}/decline', [ReservationController::class, 'decline'])->name('reservations.decline');
 Route::delete('/reservations/{id}/decline', [ReservationController::class, 'destroy'])->name('reservations.decline');
 
 

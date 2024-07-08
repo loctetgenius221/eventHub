@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Evennement;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Mail\ReservationAccepted;
 use App\Mail\ReservationDeclined;
 use App\Mail\ReservationValidated;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -28,14 +30,19 @@ class ReservationController extends Controller
      */
     public function create($id)
     {
-       // Trouvez l'événement par son ID
         $evennement = Evennement::findOrFail($id);
-
-        // Récupérez l'utilisateur authentifié
         $user = Auth::user();
 
-        // Passez l'événement et l'utilisateur à la vue
-        return view('reservations.index', compact('evennement', 'user'));;
+        // Calculons le nombre de places disponibles
+        $places_prises = $evennement->reservations->count();
+        $places_disponibles = $evennement->nombre_de_place - $places_prises;
+
+        // Vérifions s'il y a des places disponibles
+        if ($places_disponibles > 0) {
+            return view('reservations.index', compact('evennement', 'user'));
+        } else {
+            return redirect()->back()->with('error', 'Il n\'y a plus de places disponibles pour cet événement.');
+        }
     }
 
     /**
@@ -43,6 +50,16 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
+        $evennement = Evennement::findOrFail($request->input('evenement_id'));
+
+        $places_prises = $evennement->reservations->count();
+        $places_disponibles = $evennement->nombre_de_place - $places_prises;
+
+        if ($places_disponibles <= 0) {
+            return redirect()->back()->with('error', 'Il n\'y a plus de places disponibles pour cet événement.');
+        }
+
+        // Vérifier si l'utilisateur est déjà inscrit
         $existingReservation = Reservation::where('user_id', Auth::id())
             ->where('evenement_id', $request->input('evenement_id'))
             ->first();
@@ -52,16 +69,16 @@ class ReservationController extends Controller
         }
 
         $reservation = new Reservation([
-
             'created_at' => now(),
-            'evenement_id' => $request->input('evenement_id'),// Assigner l'ID du candidat connecté
+            'evenement_id' => $request->input('evenement_id'),
             'user_id' => Auth::id()
         ]);
-         // Enregistrez la reservation dans la base de données
-        $reservation->save();
 
+        $reservation->save();
+        Mail::to($reservation->user->email)->send(new ReservationAccepted($reservation));
         Auth::logout();
-        return redirect(route('home'))->with('success', 'réservation soumise avec succès');
+
+        return redirect(route('home'))->with('success', 'Réservation soumise avec succès');
 
     }
 
@@ -76,17 +93,6 @@ class ReservationController extends Controller
 
         return redirect()->back()->with('success', 'L\'inscription a été déclinée et l\'utilisateur a été notifié.');
     }
-
-    // public function decline($id)
-    // {
-    //     $reservation = Reservation::findOrFail($id);
-    //     $reservation->statut = 'refuser';
-    //     $reservation->save();
-
-    //     Mail::to($reservation->user->email)->send(new ReservationDeclined($reservation));
-
-    //     return redirect()->back()->with('success', 'L\'inscription a été déclinée et l\'utilisateur a été notifié.');
-    // }
 
     /**
      * Display the specified resource.
@@ -115,8 +121,5 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(Reservation $reservation)
-    // {
-    //     //
-    // }
+
 }

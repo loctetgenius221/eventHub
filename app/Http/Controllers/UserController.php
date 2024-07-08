@@ -11,7 +11,7 @@ use Exception;
 class UserController extends Controller
 {
     public function index()
-    {   
+    {
         $users = User::all();
         $roles = Role::all();
         return view('admins.listes-inscrit', compact('users','roles'));
@@ -34,7 +34,7 @@ class UserController extends Controller
 
     return redirect()->back()->with('success', 'Rôle mis à jour avec succès');
 }
-    public function register() 
+    public function register()
     {
         return view('associations.inscription');
     }
@@ -52,17 +52,18 @@ class UserController extends Controller
                 // Insérer les données dans la table associations
                 Association::create([
                     'user_id' => $user->id,
+                    'association_name' => $request->input('association_name'),
                     'ninea' => $request->input('ninea'),
                     'description' => $request->input('description'),
                     'activite' => $request->input('activite'),
                     'adresse' => $request->input('adresse'),
                     'date_creation' => $request->input('date_creation'),
-                    'association_name' => $request->input('association_name'),
                     'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
                 ]);
+                $user->assignRole('association');
             });
 
-            return response()->json(['message' => 'Transaction réussie !'], 201);
+            return redirect()->route('login')->with('success', 'Inscription Réussie. Veuillez-vous connecter.');
         } catch (Exception $e) {
             return response()->json(['message' => 'Échec de la transaction : ' . $e->getMessage()], 500);
         }

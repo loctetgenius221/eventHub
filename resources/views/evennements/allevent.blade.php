@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tous les événements</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .search-container {
-            /* border: 2px solid #007bff; */
             padding: 1rem;
             border-radius: 8px;
             background-color: #f8f9fa;
@@ -14,17 +16,18 @@
             width: 160vh;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom:7vh
+            margin-bottom: 7vh;
         }
 
         .search-header {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 8vh;
-            color:#FC5C65
+            color: #FC5C65;
         }
-        a{
-            text-decoration:none
+
+        a {
+            text-decoration: none;
         }
 
         .search-input {
@@ -47,16 +50,16 @@
 
         .search-item input {
             width: 90%;
-            margin-top:1vh
+            margin-top: 1vh;
         }
 
-         nav {
+        nav {
             display: flex;
             justify-content: space-between;
             margin-bottom: 2vh;
         }
 
-        .btn1 button {
+        .btn1 {
             background-color: #FC5C65;
             color: white;
             border: none;
@@ -64,7 +67,7 @@
             border-radius: 1vh;
         }
 
-        .btn2 button {
+        .btn2 {
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
@@ -72,6 +75,7 @@
             border-radius: 1vh;
             margin-left: 4vh;
         }
+        
 
         .logo {
             margin-left: 20vh;
@@ -82,30 +86,23 @@
         }
 
         header {
-            margin-top: 3vh;
+            margin-top: 4vh;
             margin-bottom: 2vh;
         }
 
-        .btn3 button {
-            background-color: #FC5C65;
-            color: white;
-            border: none;
-            padding: 1.5vh;
-            border-radius: 1vh;
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
         }
 
-        .cards-container {
-    display: flex;
-    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne suivante */
-    gap: 1rem; /* Espace entre les cartes */
-    justify-content: center; /* Aligne les cartes au centre */
-}
-
-.card {
-    flex: 1 1 30%; /* Permet aux cartes de s'ajuster à la taille de l'écran */
-    max-width: 24%; /* Limite la largeur maximale des cartes pour qu'il y en ait 3 par ligne */
-    margin: 1rem; /* Espace autour des cartes */
-}
+        .card {
+            flex: 1 1 30%;
+            max-width: 24%;
+            margin: 1rem;
+            border:none
+        }
 
         .card-image {
             height: 10rem;
@@ -163,6 +160,7 @@
             opacity: 0.5;
             box-shadow: none;
         }
+
         footer {
             background-color: #FC5C65;
             padding: 2vh;
@@ -184,65 +182,86 @@
         footer .footer-section img {
             height: 60px;
         }
-
     </style>
 </head>
+
 <body>
-<header>
+    <header>
         <nav>
-            <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
+            <div class="logo">
+            <a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></a> 
+            </div>
             <div class="group-btn">
- <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
-                <a href="#" class="btn2"><button>S'inscrire</button></a>
+                <a href="{{ route('login') }}">
+                    <button class="btn1" type="button" aria-expanded="false">
+                        Se connecter
+                    </button>
+                </a>
+                <div class="btn-group">
+                    <button class="btn2 dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        S'inscrire
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item" href="{{ route('register') }}">Participants</a></li>
+                        <li><a class="dropdown-item" href="/formulaire">Associations</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <div class="search-container">
-            <div class="search-header">Rechercher un événement</div>
+    <div class="search-container">
+        <div class="search-header">Rechercher un événement</div>
+        <form action="{{ route('evennements.search') }}" method="GET">
             <div class="search-row">
                 <div class="search-item">
                     <label for="event-name">Événement</label>
-                    <input type="text" id="event-name" class="search-input" placeholder="Nom de l'événement">
+                    <input type="text" name="query" id="event-name" class="search-input" placeholder="Nom de l'événement">
                 </div>
                 <div class="search-item">
                     <label for="event-date">Date</label>
-                    <input type="text" id="event-date" class="search-input" placeholder="Date">
+                    <input type="text" name="date" id="event-date" class="search-input" placeholder="Date">
                 </div>
                 <div class="search-item">
                     <label for="event-location">Lieu</label>
-                    <input type="text" id="event-location" class="search-input" placeholder="Lieu">
+                    <input type="text" name="location" id="event-location" class="search-input" placeholder="Lieu">
+                </div>
+                <div class="search-item">
+                    <label for="search-button" style="visibility: hidden;">Rechercher</label>
+                    <button type="submit" id="search-button" class="btn1" style="width: 100%;">Rechercher</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-<div class="cards-container">
-            @foreach($evennements as $evennement)
-            <div class="card">
+</div>
+
+    <div class="cards-container">
+        @foreach($evennements as $evennement)
+        <div class="card">
             <div class="card-image">
-            <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="{{ $evennement->nom }}" style="object-fit: cover; width: 100%; height: 100%;">
-          </div>
-                <div class="card-content">
-                    <h5 class="card-title">{{$evennement->nom}}</h5>
-                    <p class="card-text">
-                        {{$evennement->lieu}}
-                    </p>
-                    <p class="card-text">
-                        {{$evennement->date}}
-                    </p>
-                </div>
-                <div class="card-actions">
-                <a href="{{ route('evennement.detail', $evennement->id) }}" type="button" class="card-button">Voir plus</a>
-                </div>
+                <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="{{ $evennement->nom }}" style="object-fit: cover; width: 100%; height: 100%;">
             </div>
-            @endforeach
+            <div class="card-content">
+                <h5 class="card-title">{{$evennement->nom}}</h5>
+                <p class="card-text">
+                    {{$evennement->lieu}}
+                </p>
+               <p class="card-text">
+                {{ \Carbon\Carbon::parse($evennement->date)->locale('fr')->isoFormat('D MMMM, YYYY') }}
+            </p>
+            </div>
+            <div class="card-actions">
+                <a href="{{ route('evennement.detail', $evennement->id) }}" type="button" class="card-button">Voir plus</a>
+            </div>
         </div>
-        <footer>
+        @endforeach
+    </div>
+    <footer>
         <div class="footer-section">
             <img src="{{ asset('img/logo.png') }}" width="auto" height="60">
         </div>
         <div class="footer-section">
-        <p>Contacter-nous: <br> Email: contact@example.com <br> Téléphone: +221 33 200 10 10</p>
+            <p>Contacter-nous: <br> Email: contact@example.com <br> Téléphone: +221 33 200 10 10</p>
         </div>
         <div class="footer-section">
             <p>Suivez-nous:</p>
@@ -250,4 +269,5 @@
         </div>
     </footer>
 </body>
+
 </html>

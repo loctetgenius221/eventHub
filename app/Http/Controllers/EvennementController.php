@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evennement;
-use Illuminate\Http\Request;
-use App\Models\Reservation;
 use App\Models\User;
+use App\Models\Evennement;
+use App\Models\Association;
+use App\Models\Reservation;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EvennementController extends Controller
@@ -20,7 +21,7 @@ class EvennementController extends Controller
     }
 
     public function acceuil(){
-         $evennements = Evennement::take(3)->get();
+         $evennements = Evennement::take(6)->get();
 
          return view ('welcome',compact('evennements'));
     }
@@ -37,7 +38,16 @@ class EvennementController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {  
+    {
+        $user = Auth::user();
+        // Vérifier si l'utilisateur est une association et si elle est validée
+        if ($user->hasRole('association')) {
+            $association = Association::where('user_id', $user->id)->first();
+            if ($association && !$association->validated) {
+                return redirect()->back()->with('error', 'Votre association n\'a pas encore été validée.');
+            }
+        }
+
         $data = $request->all();
         // Valider les autres champs du formulaire
         $validatedData = $request->validate([
@@ -93,47 +103,82 @@ class EvennementController extends Controller
         return view('evennements.edit', compact('evennement','evennements'));
 
     }
+    public function showEvents()
+    {
+        // Logique pour récupérer les événements
+        $evennements = Evennement::all();
+
+        // Retourner la vue avec les événements
+        return view('evennements.allevent', compact('evennements'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Evennement $evennement)
-    {
+{
+    $validatedData = $request->validate([
+        'nom' => 'required|max:255',
+        'date' => 'required|date',
+        'lieu' => 'required',
+        'duree' => 'required',
+        'nombre_de_place' => 'required|integer',
+        'date_limite' => 'required|date',
+        'description' => 'required',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Changed to nullable
+    ]);
 
-        $validatedData = $request->validate([
-            'nom' => 'required|max:255',
-            'date' => 'required|date',
-            'lieu' => 'required',
-            'duree' => 'required',
-            'nombre_de_place' => 'required|integer',
-            'date_limite' => 'required|date',
-            'description' => 'required',
-            'image' => 'required',
-        ]);
+    // Vérifier si un fichier image est uploadé
+    if ($request->hasFile('image')) {
+        // Stocker l'image dans le répertoire 'public/blog'
+        $chemin_image = $request->file('image')->store('public/blog');
 
-        // $image = null;
-
-        // Vérifier si un fichier image est uploadé
-        if ($request->hasFile('image')) {
-            // Stocker l'image dans le répertoire 'public/blog'
-            $chemin_image = $request->file('image')->store('public/blog');
-
-            // Vérifier si le chemin de l'image est bien généré
-            if (!$chemin_image) {
-                return redirect()->back()->with('error', 'Erreur lors du téléchargement de l\'image.');
-            }
-
-            // Récupérer le nom du fichier de l'image
-            $validatedData['image'] = basename($chemin_image);
+        // Vérifier si le chemin de l'image est bien généré
+        if (!$chemin_image) {
+            return redirect()->back()->with('error', 'Erreur lors du téléchargement de l\'image.');
         }
+
+        // Récupérer le nom du fichier de l'image
+        $validatedData['image'] = basename($chemin_image);
+    } else {
+        // Utiliser l'ancienne image si aucune nouvelle image n'est téléchargée
+        $validatedData['image'] = $request->input('current_image');
+    }
+
     $evennement->update($validatedData);
 
     return redirect('evennements')->with('success', 'Événement mis à jour avec succès.');
+}
+
+
+    public function success(){
+
+        return view('evennements.success');
     }
-    public function showEvents()
+
+    public function search(Request $request)
     {
-        $evennements = Evennement::all();
-        return view('evennements.allevent', compact('evennements'));
+        $query = $request->input('query');
+        $date = $request->input('date');
+        $location = $request->input('location');
+
+        $evennements = Evennement::query();
+
+        if ($query) {
+            $evennements->where('nom', 'LIKE', "%{$query}%");
+        }
+
+        if ($date) {
+            $evennements->whereDate('date', $date);
+        }
+
+        if ($location) {
+            $evennements->where('lieu', 'LIKE', "%{$location}%");
+        }
+
+        $evennements = $evennements->get();
+
+        return view('search', compact('evennements'));
     }
 
     /**
@@ -147,7 +192,10 @@ class EvennementController extends Controller
 
     public function detail($id) {
         $evennement = Evennement::find($id);
-        return view('evennements.detail', compact('evennement'));
+        // Calculer le nombre de places disponibles
+        $places_prises = $evennement->reservations->count();
+        $places_disponibles = $evennement->nombre_de_place - $places_prises;
+        return view('evennements.detail', compact('evennement', 'places_disponibles'));
     }
 
     public function inscription($id) {
