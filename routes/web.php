@@ -66,6 +66,7 @@ Route::get('/', [EvennementController::class, 'acceuil'])->name('home');
 Route::get('user-deconnect', function(){
     Auth::logout();
 });
+Route::get('/evennements/search', [EvennementController::class, 'search'])->name('evennements.search');
 
 // Routes pour les permissions
 Route::resource('permissions', PermissionController::class);
@@ -85,6 +86,8 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['a
 // Routes pour les événements
 Route::get('events/show', [EvennementController::class, 'showEvents'])->name('events.showEvents');
 Route::get('inscription/reussie', [EvennementController::class, 'success'])->name('inscription.reussie');
+
+
 
 
 // Route pour décliner la reservation d'un participant

@@ -52,6 +52,7 @@ class UserController extends Controller
                 // Insérer les données dans la table associations
                 Association::create([
                     'user_id' => $user->id,
+                    'association_name' => $request->input('association_name'),
                     'ninea' => $request->input('ninea'),
                     'description' => $request->input('description'),
                     'activite' => $request->input('activite'),

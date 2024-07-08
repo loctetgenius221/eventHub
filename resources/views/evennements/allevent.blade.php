@@ -75,6 +75,7 @@
             border-radius: 1vh;
             margin-left: 4vh;
         }
+        
 
         .logo {
             margin-left: 20vh;
@@ -209,24 +210,31 @@
         </nav>
     </header>
     <div class="container">
-        <div class="search-container">
-            <div class="search-header">Rechercher un événement</div>
+    <div class="search-container">
+        <div class="search-header">Rechercher un événement</div>
+        <form action="{{ route('evennements.search') }}" method="GET">
             <div class="search-row">
                 <div class="search-item">
                     <label for="event-name">Événement</label>
-                    <input type="text" id="event-name" class="search-input" placeholder="Nom de l'événement">
+                    <input type="text" name="query" id="event-name" class="search-input" placeholder="Nom de l'événement">
                 </div>
                 <div class="search-item">
                     <label for="event-date">Date</label>
-                    <input type="text" id="event-date" class="search-input" placeholder="Date">
+                    <input type="text" name="date" id="event-date" class="search-input" placeholder="Date">
                 </div>
                 <div class="search-item">
                     <label for="event-location">Lieu</label>
-                    <input type="text" id="event-location" class="search-input" placeholder="Lieu">
+                    <input type="text" name="location" id="event-location" class="search-input" placeholder="Lieu">
+                </div>
+                <div class="search-item">
+                    <label for="search-button" style="visibility: hidden;">Rechercher</label>
+                    <button type="submit" id="search-button" class="btn1" style="width: 100%;">Rechercher</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+</div>
+
     <div class="cards-container">
         @foreach($evennements as $evennement)
         <div class="card">
@@ -238,9 +246,9 @@
                 <p class="card-text">
                     {{$evennement->lieu}}
                 </p>
-                <p class="card-text">
-                    {{$evennement->date}}
-                </p>
+               <p class="card-text">
+                {{ \Carbon\Carbon::parse($evennement->date)->locale('fr')->isoFormat('D MMMM, YYYY') }}
+            </p>
             </div>
             <div class="card-actions">
                 <a href="{{ route('evennement.detail', $evennement->id) }}" type="button" class="card-button">Voir plus</a>

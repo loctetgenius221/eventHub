@@ -438,8 +438,8 @@
                         {{$evennement->lieu}}
                     </p>
                     <p class="card-text">
-                    {{ \Carbon\Carbon::parse($evennement->date)->translatedFormat('j F, Y') }}
-                    </p>
+                {{ \Carbon\Carbon::parse($evennement->date)->locale('fr')->isoFormat('D MMMM, YYYY') }}
+            </p>
                 </div>
                 <div class="card-actions">
                 <a href="evennement/detail/{{ $evennement->id }}"type="button" class="card-button">Voir plus</a>
