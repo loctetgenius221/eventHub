@@ -154,6 +154,12 @@
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered table-striped">
+                                    @if (session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+
                                     <thead>
                                         <tr>
                                             <th>Id</th>
