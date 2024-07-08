@@ -3,6 +3,11 @@
 @section('content')
             <div class="form-container">
                 <h2>Ajouter un nouvel évènement</h2>
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="container mt-5" >
                     <form class="row g-3" action="{{route('evennements.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -54,7 +59,7 @@
                                 @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            </div>   
+                            </div>
                             <div class="responsive-flex">
                             <div class="col-md-2">
                                 <label for="exampleFormControlTextarea1" class="form-label">Image</label>
@@ -114,7 +119,7 @@
         color: white;
         border-radius: 0.5rem;
     }
-    
+
 
     .form-container {
         background-color: #f8f9fa;

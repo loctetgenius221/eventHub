@@ -21,13 +21,16 @@ Route::get('user-deconnect', function(){
 
 
 
-// les routes du dashbord admin 
+// les routes du dashbord admin
 Route::middleware('auth','check.admin.dashbord')->group(function () {
     Route::get('/admin/accueil', [AdminController::class, 'accueil'])->name('admin.accueil');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::put('/users/{user}/update-role', [UserController::class, 'updateRole'])->name('users.updateRole');
     Route::resource('associations', AssociationController::class);
+    Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
+    Route::patch('association/valider/{association}', [AdminController::class, 'validateAssociation'])->name('associations.validate');
+    Route::post('/associations/{id}/toggle-suspension', [AssociationController::class, 'toggleSuspension'])->name('associations.toggle-suspension');
 });
 
 
@@ -54,9 +57,7 @@ Route::post('evennements', [EvennementController::class, 'store'])
 
 
 // dashboard admin gestion des associations
-Route::get('dashboard-admin', [AssociationController::class, 'associationsEnAttente']);
-Route::put('association/valider/{association}', [AssociationController::class, 'validateAssociation'])->name('associations.validate');
-Route::post('/associations/{id}/toggle-suspension', [AssociationController::class, 'toggleSuspension'])->name('associations.toggle-suspension');
+
 
 
 require __DIR__.'/auth.php';

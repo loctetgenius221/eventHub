@@ -59,7 +59,12 @@
 </div>
 
 <div class="form-container">
-  @foreach ($associations as $association)
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+  @foreach ($unvalidatedAssociations as $association)
   <div class="container px-4 border bg-light flex space-x-4 bg-white rounded-xl max-h-24 mt-6">
     <div class="row">
       <div class="col-12">
@@ -70,7 +75,7 @@
     </div>
     <div class="logo-association rounded-xl m-2">
       <ul>
-        <li class="text-xl">{{$association->association_name}}</li>
+        <li class="text-xl">{{$association->user->name}}</li>
         <li class="mt-6">
           <i class="fa-solid fa-calendar-days mx-2" style="color: #ff69b4;"></i>{{$association->date_creation}}
         </li>
@@ -86,11 +91,10 @@
     <div class="logo-association rounded-xl w-20 m-2">
       <ul>
         <li class="ml-64">
-          <form action="{{ route('associations.toggle-suspension', $association->id) }}" method="POST">
+          <form action="{{ route('associations.validate', $association->id) }}" method="POST">
             @csrf
-            <input type="hidden" name="suspended" value="0">
-            <input type="checkbox" id="toggle1" name="suspended" value="1" {{ $association->suspended ? 'checked' : '' }} onchange="this.form.submit()">
-            <label for="toggle1"></label>
+            @method('PATCH')
+            <button type="submit" class="btn btn-success">Valider</button>
           </form>
         </li>
         <li class="ml-64 mt-2">

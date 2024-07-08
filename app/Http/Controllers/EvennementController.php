@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evennement;
-use Illuminate\Http\Request;
-use App\Models\Reservation;
 use App\Models\User;
+use App\Models\Evennement;
+use App\Models\Association;
+use App\Models\Reservation;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EvennementController extends Controller
@@ -38,6 +39,15 @@ class EvennementController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+        // Vérifier si l'utilisateur est une association et si elle est validée
+        if ($user->hasRole('association')) {
+            $association = Association::where('user_id', $user->id)->first();
+            if ($association && !$association->validated) {
+                return redirect()->back()->with('error', 'Votre association n\'a pas encore été validée.');
+            }
+        }
+
         $data = $request->all();
         // Valider les autres champs du formulaire
         $validatedData = $request->validate([
