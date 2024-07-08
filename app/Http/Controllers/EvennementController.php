@@ -103,6 +103,14 @@ class EvennementController extends Controller
         return view('evennements.edit', compact('evennement','evennements'));
 
     }
+    public function showEvents()
+    {
+        // Logique pour récupérer les événements
+        $evennements = Evennement::all();
+
+        // Retourner la vue avec les événements
+        return view('evennements.allevent', compact('evennements'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -146,6 +154,31 @@ class EvennementController extends Controller
     public function success(){
 
         return view('evennements.success');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $date = $request->input('date');
+        $location = $request->input('location');
+
+        $evennements = Evennement::query();
+
+        if ($query) {
+            $evennements->where('nom', 'LIKE', "%{$query}%");
+        }
+
+        if ($date) {
+            $evennements->whereDate('date', $date);
+        }
+
+        if ($location) {
+            $evennements->where('lieu', 'LIKE', "%{$location}%");
+        }
+
+        $evennements = $evennements->get();
+
+        return view('search', compact('evennements'));
     }
 
     /**
