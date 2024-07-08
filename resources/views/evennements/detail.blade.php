@@ -18,6 +18,17 @@
 <body>
 
     <main>
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <section class="event-details">
         <img src="{{ asset('storage/blog/'.$evennement->image )}}" alt="" class="event-image">
             <div class="event-info">
@@ -27,7 +38,7 @@
                 <p>Organisé par simplon </p>
                 <div class="event-info-bottom">
                     <a href="{{ route('reservations.create', ['id' => $evennement->id ]) }}" class="btn1"><button>S'inscrire</button></a>
-                    <p>Places disponibles : 50</p>
+                    <p>Places disponibles :{{ $places_disponibles }}</p>
                 </div>
             </div>
         </section>

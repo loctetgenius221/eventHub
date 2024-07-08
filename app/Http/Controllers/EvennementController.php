@@ -37,7 +37,7 @@ class EvennementController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {  
+    {
         $data = $request->all();
         // Valider les autres champs du formulaire
         $validatedData = $request->validate([
@@ -134,7 +134,7 @@ class EvennementController extends Controller
 
 
     public function success(){
-        
+
         return view('evennements.success');
     }
 
@@ -149,7 +149,10 @@ class EvennementController extends Controller
 
     public function detail($id) {
         $evennement = Evennement::find($id);
-        return view('evennements.detail', compact('evennement'));
+        // Calculer le nombre de places disponibles
+        $places_prises = $evennement->reservations->count();
+        $places_disponibles = $evennement->nombre_de_place - $places_prises;
+        return view('evennements.detail', compact('evennement', 'places_disponibles'));
     }
 
     public function inscription($id) {

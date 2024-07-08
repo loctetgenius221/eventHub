@@ -31,13 +31,13 @@
             <div class="error">{{ $message }}</div>
             @enderror
     </div>
-    <div>
+    {{-- <div>
         <label for="association_name">Nom de l'association:</label>
         <input type="text" id="association_name" name="association_name" required>
         @error('association_name')
             <div class="error">{{ $message }}</div>
             @enderror
-    </div>
+    </div> --}}
     <div>
         <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="password" required>
