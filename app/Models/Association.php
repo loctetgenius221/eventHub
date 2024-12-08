@@ -14,6 +14,7 @@ class Association extends Model
         'user_id',
         'logo',
         'description',
+        'association_name',
         'adresse',
         'activite',
         'ninea',

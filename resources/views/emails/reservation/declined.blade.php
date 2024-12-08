@@ -19,12 +19,13 @@
         .header {
             text-align: center;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #ff5e5e;
             color: white;
             border-radius: 8px 8px 0 0;
         }
         .content {
             padding: 20px;
+            color: white;
         }
         .footer {
             text-align: center;

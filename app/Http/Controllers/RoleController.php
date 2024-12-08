@@ -42,7 +42,7 @@ class RoleController extends Controller
         ]);
         Role::create([
             'name' => $request->name,
-            'guard_name' => 'web'  
+            'guard_name' => 'web'
         ]);
         return redirect('roles')->with('status', 'Role créée avec succès');
     }
@@ -88,25 +88,30 @@ class RoleController extends Controller
     public function destroy($roleId)
     {
         $role = Role::find($roleId);
+        $baseRoles = ['admin', 'participant', 'association'];
+
+        if (in_array($role->name, $baseRoles)) {
+            return redirect()->back()->with('error', 'Vous ne pouvez pas supprimer les rôles de base.');
+        }
         $role->delete();
         return redirect('roles')->with('status', 'Role supprimée avec succès');
     }
     public function addPermissionToRole($roleId)
-{
-    $permissions = Permission::all();
-    $role = Role::findOrFail($roleId);
+    {
+        $permissions = Permission::all();
+        $role = Role::findOrFail($roleId);
 
-    $rolePermissions = DB::table('role_has_permissions')
-                        ->where('role_id', $role->id)
-                        ->pluck('permission_id')
-                        ->toArray(); // Convertir en tableau pour une utilisation dans in_array
+        $rolePermissions = DB::table('role_has_permissions')
+                            ->where('role_id', $role->id)
+                            ->pluck('permission_id')
+                            ->toArray(); // Convertir en tableau pour une utilisation dans in_array
 
-    return view('role-permission.roles.add-permissions', [
-        'role' => $role,
-        'permissions' => $permissions,
-        'rolePermissions' => $rolePermissions,
-    ]);
-}
+        return view('role-permission.roles.add-permissions', [
+            'role' => $role,
+            'permissions' => $permissions,
+            'rolePermissions' => $rolePermissions,
+        ]);
+    }
 
     public function givePermissionToRole(Request $request, $roleId){
           $request->validate([

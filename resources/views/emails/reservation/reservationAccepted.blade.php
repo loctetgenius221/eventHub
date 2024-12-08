@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compte Validé</title>
+    <title>Réservation Acceptée</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,7 +39,7 @@
             padding: 10px 20px;
             margin-top: 20px;
             background-color: #ff5e5e;
-            color: white;
+            color: #ffffff;
             text-decoration: none;
             border-radius: 5px;
         }
@@ -54,15 +54,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Votre compte a été validé</h1>
+            <h1>Réservation Acceptée</h1>
         </div>
         <div class="content">
-            <p>Bonjour <strong>{{ $association->user->name }}</strong>,</p>
-            <p>Votre compte pour l'association <strong>"{{ $association->user->name }}"</strong> a été validé par l'administrateur.</p>
+            <p>Bonjour <strong>{{ $reservation->user->name }}</strong>,</p>
+            <p>Votre réservation pour l'événement <strong>"{{ $reservation->evennement->nom }}"</strong> a été acceptée avec succès.</p>
             <div class="panel">
                 <p>Merci de votre inscription et bienvenue parmi nous !</p>
             </div>
-            <a href="https://example.com/login" class="button">Se connecter</a>
             <p>Cordialement,<br>{{ config('app.name') }}</p>
         </div>
         <div class="footer">

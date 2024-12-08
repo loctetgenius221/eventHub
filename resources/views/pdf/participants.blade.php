@@ -57,10 +57,7 @@
                 <th>Lieu:</th>
                 <td>{{ $evenement->lieu }}</td>
             </tr>
-            {{-- <tr>
-                <th>Association:</th>
-                <td>{{ $association->name }}</td>
-            </tr> --}}
+           
         </table>
     </div>
 

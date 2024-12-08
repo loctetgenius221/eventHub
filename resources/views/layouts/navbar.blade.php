@@ -13,14 +13,24 @@
             justify-content: space-between;
             margin-bottom: 2vh;
         }
-        .btn1 button {
+
+        .btn1 {
             background-color: #FC5C65;
             color: white;
             border: none;
             padding: 1.5vh;
             border-radius: 1vh;
         }
-        .btn2 button {
+
+        .btn1 button {
+            background-color: #FC5C65;
+            color: white;
+            border: none;
+            padding: 0.1vh;
+            border-radius: 1vh;
+        }
+
+        .btn2 {
             background-color: white;
             color: #FC5C65;
             border: 0.2vh solid #FC5C65;
@@ -28,44 +38,64 @@
             border-radius: 1vh;
             margin-left: 4vh;
         }
+
         .logo {
             margin-left: 20vh;
         }
+
         .group-btn {
             margin-right: 8vh;
         }
+
         header {
-            margin-top: 3vh;
+            margin-top: 4vh;
             margin-bottom: 2vh;
         }
-        .contact h2{
-            color:#FC5C65
+
+        .contact h2 {
+            color: #FC5C65;
         }
-        .description h2{
-            color:#FC5C65
+
+        .description h2 {
+            color: #FC5C65;
         }
-        .location h2{
-            color:#FC5C65
+
+        .location h2 {
+            color: #FC5C65;
         }
-        .event-info p{
-            font-size:2.5vh;
-            font-weight:600
+
+        .event-info p {
+            font-size: 2.5vh;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <nav>
-            <div class="logo"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></div>
-            <div class="group-btn">
-                <a href="{{ route('login') }}" class="btn1"><button>Se connecter</button></a>
-                <a href="#" class="btn2"><button>S'inscrire</button></a>
+<header>
+    <nav>
+        <div class="logo">
+            <a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" width="auto" height="60"></a> 
+        </div>
+        <div class="group-btn">
+            <a href="{{ route('login') }}">
+                <button class="btn1" type="button" aria-expanded="false">
+                    Se connecter
+                </button>
+            </a>
+            <div class="btn-group">
+                <button class="btn2 dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    S'inscrire
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="{{ route('register') }}">Participants</a></li>
+                    <li><a class="dropdown-item" href="/formulaire">Associations</a></li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
-    @yield('content')
+@yield('content')
 
 </body>
 </html>
